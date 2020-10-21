@@ -362,33 +362,33 @@ public class JavaStart1021 {
 //			System.out.println();
 //		}
 //		
-		System.out.println("18-------------------------------");
-		int cntnum1=1;
-		int cntnum2=10;
-		int cntnum3=21;
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum1+"\t");
-			cntnum1++;
-		}
-		System.out.println();
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum2+"\t");
-			cntnum2--;
-		}
-		System.out.println();
-		cntnum2=10;
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum2+1+"\t");
-			cntnum2++;
-		}
-		System.out.println();
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum3+"\t");
-			cntnum3++;
-		}
-		System.out.println();
+//		System.out.println("18-------------------------------");
+//		int cntnum1=1;
+//		int cntnum2=10;
+//		int cntnum3=21;
+//		for(int j=0;j<5;j++) {
+//			System.out.print(cntnum1+"\t");
+//			cntnum1++;
+//		}
+//		System.out.println();
+//		for(int j=0;j<5;j++) {
+//			System.out.print(cntnum2+"\t");
+//			cntnum2--;
+//		}
+//		System.out.println();
+//		cntnum2=10;
+//		for(int j=0;j<5;j++) {
+//			System.out.print(cntnum2+1+"\t");
+//			cntnum2++;
+//		}
+//		System.out.println();
+//		for(int j=0;j<5;j++) {
+//			System.out.print(cntnum3+"\t");
+//			cntnum3++;
+//		}
+//		System.out.println();
 
-		
+		System.out.println("19-------------------------------");
 		
 		
 		
