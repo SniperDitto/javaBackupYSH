@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>계산기</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            width: 400px;
+            margin: auto;
+        }
+        #clear{
+            clear: both;
+        }
+        #header{
+            width: 400px;
+            height: 30px;
+            background-color: lightblue;
+        }
+        #result{
+            width: 400px;
+            height: 50px;
+            float: left;
+        }
+        #t1{
+            width: 400px;
+            height: 50px;
+            border: none;
+            text-align: right;
+            font-size: 40px;
+        }
+        #calc{
+            width: 400px;
+            height: 100px;
+            float: left;
+        }
+        #plus, #minus, #mult, #divide{
+            width: 100px;
+            height: 100px;
+            background-color: lightcoral;
+            float: left;
+            text-align: center;
+            font-size: 30px;
+        }
+        #plus:hover, #minus:hover, #mult:hover, #divide:hover{
+            background-color: rgb(179, 95, 95);
+        }
+        #num{
+            width: 300px;
+            height: 300px;
+            float: left;
+        }
+        #n0, #n1, #n2, #n3, #n4, #n5, #n6, #n7, #n8, #n9{
+            width: 100px;
+            height: 100px;
+            float: left;
+            background-color: lightslategray;
+            text-align: center;
+            font-size: 20px;
+        }
+        #n0:hover, #n1:hover, #n2:hover, #n3:hover, #n4:hover, #n5:hover, #n6:hover, #n7:hover, #n8:hover, #n9:hover{
+            background-color: rgb(97, 111, 124);
+        }
+        #clearall{
+            width: 100px;
+            height: 100px;
+            float: left;
+            background-color: lightsteelblue;
+            text-align: center;
+            font-size: 30px;
+        }
+        #clearall:hover{
+            background-color: rgb(158, 177, 201);
+        }
+        #equal{
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+            float: left;
+            text-align: center;
+            font-size: 30px;
+        }
+        #equal:hover{
+            background-color: rgb(120, 196, 120);
+        }
+    </style>
+    <script>
+        function clearall(){
+            var t1=document.getElementById("t1");
+            t1.value="";
+        }
+        function input(a){
+            var t1=document.getElementById("t1");
+            t1.value+=a;
+        }
+        function calculate(){
+            var t1=document.getElementById("t1");
+            t1.value=eval(t1.value);
+        }
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">계산기</div>
+        <div id="clear"></div>
+        <div id="result">
+            <input type='text' id="t1" value=""/>
+        </div>
+        <div id="main">
+            <div id="calc">
+                <div id="plus" value="+" onclick="input('+')">+</div>
+                <div id="minus" value="-" onclick="input('-')">-</div>
+                <div id="mult" value="*" onclick="input('*')">x</div>
+                <div id="divide" value="/" onclick="input('/')">/</div>
+            </div>
+            <div id="clear"></div>
+            <dic id="num">
+                <div id="n7" value="7" onclick="input(7)">7</div>
+                <div id="n8" value="8" onclick="input(8)">8</div>
+                <div id="n9" value="9" onclick="input(9)">9</div>
+                <div id="clear"></div>
+                <div id="n4" value="4" onclick="input(4)">4</div>
+                <div id="n5" value="5" onclick="input(5)">5</div>
+                <div id="n6" value="6" onclick="input(6)">6</div>
+                <div id="clear"></div>
+                <div id="n1" value="1" onclick="input(1)">1</div>
+                <div id="n2" value="2" onclick="input(2)">2</div>
+                <div id="n3" value="3" onclick="input(3)">3</div>
+            </dic>
+            <div id="clearall" onclick="clearall()">Clear</div>
+            <div id="equal" onclick="calculate()">=</div>
+            <div id="n0" value="0" onclick="input(0)">0</div>
+        </div>
+    </div>
+</body>
+</html>
