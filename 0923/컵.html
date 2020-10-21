@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>메뉴만들기</title>
+        <meta charset="utf-8">
+        <style>
+            *
+            {
+                margin:0;
+                padding:0;
+            }
+            #title
+            {
+                position: absolute;
+                top: 0px;
+                margin-left: 500px;
+                width: 300px;
+                height: 300px;
+                z-index: 0;
+            }
+            #cup1
+            {
+                position: relative;
+                top:80px;
+                left:800px;
+                z-index: 1;
+            }
+            #cup2
+            {
+                position: relative;
+                top:-250px;
+                left:950px;
+                z-index: 2;
+            }
+            #cup3
+            {
+                position: relative;
+                top: -450px;
+                left: 880px;
+                z-index: 3;
+            }
+            #line1
+            {
+                position: relative;
+                background-color: #EF8798;
+                top: -994px;
+                left: 500px;
+                width: 800px;
+                height: 42px;
+                z-index: -1;
+            }
+            #line2
+            {
+                position: relative;
+                background-color: #54AEC8;
+                top: -995px;
+                left: 500px;
+                width: 800px;
+                height: 23px;
+                z-index: -2;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="title">
+            <img src="title_layer.gif">
+        </div>
+        <div id="cup1">
+            <img src="galss1.gif">
+        </div>
+        <div id="cup2">
+            <img src="galss2.gif">
+        </div>
+        <div id="cup3">
+            <img src="galss3.gif">
+        </div>
+        <div id="line1"></div>
+        <div id="line2"></div>
+	</body>
+</html>

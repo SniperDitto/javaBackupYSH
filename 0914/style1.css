@@ -1,0 +1,22 @@
+
+
+h1{
+	background-color: yellow;
+	color:black;
+	border:2px solid red;
+	font-size:50px;
+}
+h2{
+	color: yellow;
+}
+h3{
+	color: blue;
+}
+body{
+	background-color: silver;
+}
+p{
+	background-color: green;
+	border:blue;
+	text-align: center;
+}

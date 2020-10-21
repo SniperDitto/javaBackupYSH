@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        h1[text]{
+            color:red;
+            background-color: gray;
+        }
+        h2[text]{
+            color:green;
+            background-color:yellow;
+        }
+        h2[text="attr2"]{
+            color:blue;
+            background-color:coral;
+        }
+        p[text="attr1"]{
+            color:violet;
+            background-color:turquoise;
+        }
+    </style>
+	<head>
+		<title>선택자연습</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+        <h1 text="attr1">h1</h1>
+        <h1 text="attr2">h1</h1>
+        <h2 text="attr1">h2</h2>
+		<h2 text="attr2">h2</h2>
+        <p>ppppp</p>
+        <p text="attr1">ppppp</p>
+        <p text="attr2">ppppp</p>
+	</body>
+</html>
