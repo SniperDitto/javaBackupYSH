@@ -68,13 +68,13 @@ public class JavaStart1023a {
 //		System.out.println("arr1:"+Arrays.toString(arr1));
 //		System.out.println("arr2:"+Arrays.toString(arr2));
 //		System.out.println("arr3:"+Arrays.toString(arr3));
-		int a=1;int b=2;
-		System.out.println(sum(a,b)+" "+min(a, b)+" "+mul(a, b)+" "+div(a, b));
-		
-		
-		
-		
-		
+		int i=1;int j=2;
+		int sum1=sum(i,j);
+		int min1=min(i, j);
+		int mul1=mul(i, j);
+		int div1=div(i, j);
+		System.out.println(sum1+" "+min1+" "+mul1+" "+div1);
+
 		
 
 	}

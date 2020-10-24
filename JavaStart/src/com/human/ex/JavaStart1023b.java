@@ -52,12 +52,12 @@ public class JavaStart1023b {
 //		System.out.println(a);
 //		int b=function4(2, 4, 3);
 //		System.out.println(b);
-		int a=5;
+		int i=5;
 		int arr[]= {1,2};
-		function5(a);
+		function5(i);
 		function7(arr);
-		System.out.println(a);
-		System.out.println(function6(a));
+		System.out.println(i);
+		System.out.println(function6(i));
 		System.out.println(Arrays.toString(arr));
 		System.out.println(Arrays.toString(function8(arr)));
 	}
