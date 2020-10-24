@@ -260,8 +260,10 @@ public class JavaStart1021 {
 		for(int i=1;i<6;i++) {
 			System.out.print("점수 입력: ");
 			int score1 = Integer.parseInt(scanner.nextLine());
-			if (score1<=60) {
+			if (score1<=60 && score1>=0) {
 				fail++;
+			}else if(score1>100 || score1<0){
+				System.out.println("잘못된 점수");
 			}
 		}
 		System.out.println(fail+"명 탈락");
@@ -367,30 +369,26 @@ public class JavaStart1021 {
 		}
 		
 		System.out.println("18-------------------------------");
-		int cntnum1=1;
-		int cntnum2=10;
-		int cntnum3=21;
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum1+"\t");
-			cntnum1++;
+		int lineC=0;
+		int numOut=1;
+		int temp=0;
+		while(numOut<=25) {
+			if(lineC%2==0) {
+				for(int j=0;j<5;j++) {
+					System.out.print(numOut+"\t");
+					numOut++;
+				}
+				temp=numOut-1;
+			}else {
+				for(int j=5;j>0;j--) {
+					System.out.print(temp+j+"\t");
+					numOut++;
+				}
+			}
+			lineC++;
+			System.out.println();
 		}
-		System.out.println();
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum2+"\t");
-			cntnum2--;
-		}
-		System.out.println();
-		cntnum2=10;
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum2+1+"\t");
-			cntnum2++;
-		}
-		System.out.println();
-		for(int j=0;j<5;j++) {
-			System.out.print(cntnum3+"\t");
-			cntnum3++;
-		}
-		System.out.println();
+
 
 		System.out.println("19-------------------------------");
 		System.out.print("시작 요일 입력(0~6까지 각 일~토요일): ");
