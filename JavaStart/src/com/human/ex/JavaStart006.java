@@ -32,12 +32,12 @@ public class JavaStart006 {
 				if(name1.equals("exit")) {
 					break login;
 				}else if(name1.equals("admin")) {
-					isAdmin=true;
 					System.out.print("비밀번호 입력 : ");
 					String passw1=scanner.nextLine();
 					if(passw1.equals("1111")) {
 						System.out.printf("관리자 로그인%n");
-						break login;
+						isLogin=true;isAdmin=true;
+						break;
 					}else {
 						System.out.println("잘못된 비밀번호입니다");
 					}
@@ -50,13 +50,11 @@ public class JavaStart006 {
 						if(i.pw.equals(passw1)) {
 							System.out.printf("%s님으로 로그인%n",i.name);
 							isLogin=true;idLoggedin=i.id;
-							break login;
+							break;
 						}else {
 							System.out.println("잘못된 비밀번호입니다");
 						}
 						break;
-					}else {
-						//login=0;
 					}
 				}
 				if (isLogin==false) {
@@ -76,8 +74,8 @@ public class JavaStart006 {
 				System.out.println("잘못된 입력");
 				break;
 			}
-		}
-		if(isAdmin==false) {
+
+		if(isAdmin==false && isLogin==true) {
 			bank: for (;;) {
 				int menu = 123;
 				System.out.println("1.입금 2.출금 3.조회 4.종료");
@@ -95,14 +93,14 @@ public class JavaStart006 {
 				case 2:
 					for (BankAccount i : information) {
 						if(i.id==idLoggedin) {
-						System.out.print("출금할 금액 입력 : ");
-						int withdraw = Integer.parseInt(scanner.nextLine());
-						if (i.balance - withdraw < 0) {
-							System.out.println("잔액이 부족합니다");
-							break;
-						} else {
-							i.balance -= withdraw;
-						}
+							System.out.print("출금할 금액 입력 : ");
+							int withdraw = Integer.parseInt(scanner.nextLine());
+							if (i.balance - withdraw < 0) {
+								System.out.println("잔액이 부족합니다");
+								break;
+							} else {
+								i.balance -= withdraw;
+							}
 						}
 					}
 					break;
@@ -119,9 +117,9 @@ public class JavaStart006 {
 					break;
 				}
 			}
-		}else {
+		}else if(isAdmin==true && isLogin==true){
 			admin:for(;;) {
-				BankAccount temp[]=information.clone();
+				//BankAccount temp[]=information.clone();
 				int menu = 123;
 				System.out.println("1.계정추가 2.계정삭제 3.모든사용자정보 4.id로 정보 검색 5.종료");
 				System.out.print("원하는 메뉴 입력 : ");
@@ -137,15 +135,19 @@ public class JavaStart006 {
 					length++;index++;
 					break;
 				case 2:
+					boolean isFound1=false;
 					System.out.println("<계정삭제>");
 					System.out.printf("<삭제할 사용자명 : ");
 					String name1=scanner.nextLine();
 					for (BankAccount i:information) {
 						if(i.name.equals(name1)){
 							information[i.id]=null;
-						}else {
-							System.out.println("계정을 찾을 수 없음");
+							isFound1=true;
+							break;
 						}
+					}
+					if(isFound1=false) {
+						System.out.println("계정을 찾을 수 없음");
 					}
 					break;
 				case 3:
@@ -153,15 +155,19 @@ public class JavaStart006 {
 					System.out.println(Arrays.toString(information));
 					break;
 				case 4:
-					System.out.println("<id로 정보 검색>");
-					System.out.print("id 입력 : ");
+					boolean isFound=false;
+					System.out.println("<이름으로 정보 검색>");
+					System.out.print("이름 입력 : ");
 					String name2=scanner.nextLine();
 					for (BankAccount i:information) {
 						if(i.name.equals(name2)){
 							System.out.println(information[i.id]);
-						}else {
-							System.out.println("계정을 찾을 수 없음");
+							isFound=true;
+							break;
 						}
+					}
+					if(isFound=false) {
+						System.out.println("계정을 찾을 수 없음");
 					}
 					break;
 				case 5:
@@ -171,6 +177,7 @@ public class JavaStart006 {
 					break;
 				}
 			}
+		}
 		}
 		System.out.println("종료");
 		
