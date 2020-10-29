@@ -2,74 +2,69 @@ package com.human.ex;
 
 import java.util.Arrays;
 
+
 import com.human.dto.BankAccount;
 
-public class JavaStart006 {
+public class DdongZet {
 
-
-
-	
 	public static void main(String[] args) {
 		java.util.Scanner scanner = new java.util.Scanner(System.in);
-		int length=1;int index=0;boolean isAdmin=false;boolean isLogin=false;int idLoggedin=0;
-		BankAccount information[]= new BankAccount[length];
+		BankAccount adminAccount = new BankAccount("admin","1111",0,0);
+		boolean isAdmin = false;
+		boolean isLogin = false;
+		int idLoggedin = 0;
+		BankAccount information[] = new BankAccount[1];
 		login: for (;;) {
-			BankAccount temp[] = information.clone();
 			System.out.printf("로그인:1, 회원가입:2%n입력 : ");// id=사용자명, 동명이인 고려x
 			int login = Integer.parseInt(scanner.nextLine());
 			switch (login) {
 			case 1:
 				boolean idChecked = false;
 				System.out.printf("<로그인>%n사용자명 : ");
-				String name1 = scanner.nextLine();
-				if (name1.equals("exit")) {
+				String inputName = scanner.nextLine();
+				if (inputName.equals("exit")) {
 					break login;
-				} else if (name1.equals("admin")) {
+				} else if (inputName.equals(adminAccount.name)) {
 					System.out.print("비밀번호 입력 : ");
-					String passw1 = scanner.nextLine();
-					if (passw1.equals("1111")) {
+					String inputPw = scanner.nextLine();
+					if (inputPw.equals(adminAccount.pw)) {
 						System.out.printf("관리자 로그인%n");
 						isLogin = true;
 						isAdmin = true;
 						break;
 					} else {
 						System.out.println("잘못된 비밀번호입니다");
+						break;
 					}
-					break;
 				}
 				for (BankAccount i : information) {
-					if (i.name.equals(name1)) {
+					if (i.name.equals(inputName)) {
 						idChecked = true;
 						System.out.print("비밀번호 입력 : ");
 						String passw1 = scanner.nextLine();
 						if (i.pw.equals(passw1)) {
 							System.out.printf("%s님으로 로그인%n", i.name);
 							isLogin = true;
+							isAdmin = false;
 							idLoggedin = i.id;
 							break;
 						} else {
-							
+
 							System.out.println("잘못된 비밀번호입니다");
 							break;
 						}
 					}
 				}
-				
+
 				if (idChecked == false) {
 					System.out.println("사용자명을 찾을 수 없습니다");
 				}
 				break;
 			case 2:
-				
-				System.out.println("<회원가입>");
-				System.out.print("사용할 사용자명 : ");//사용자명 중복은 체크안함
-				String name = scanner.nextLine();
-				System.out.print("사용할 비밀번호 : ");
-				String passw = scanner.nextLine();
 
-				information = makeArray(information, temp, length, name, passw, index);
-				length++;
-				index++;
+				System.out.println("<회원가입>");
+				BankAccount account = createAccount(information);
+				information = makeArray(information, account);
 				break;
 			default:
 				System.out.println("잘못된 입력");
@@ -120,7 +115,6 @@ public class JavaStart006 {
 				}
 			} else if (isAdmin == true && isLogin == true) {
 				admin: for (;;) {
-					BankAccount temp1[] = information.clone();
 					int menu = 123;
 					System.out.println("1.계정추가 2.계정삭제 3.모든사용자정보 4.id로 정보 검색 5.종료");
 					System.out.print("원하는 메뉴 입력 : ");
@@ -128,27 +122,22 @@ public class JavaStart006 {
 					switch (menu) {
 					case 1:
 						System.out.println("<계정추가>");
-						System.out.print("추가할 사용자명 : ");
-						String name = scanner.nextLine();
-						System.out.print("사용할 비밀번호 : ");
-						String passw = scanner.nextLine();
-						information = makeArray(information, temp1, length, name, passw, index);
-						length++;
-						index++;
+						BankAccount account = createAccount(information);
+						information = makeArray(information, account);
 						break;
 					case 2:
-						boolean isFound1 = false;
+						boolean nameIsFound = false;
 						System.out.println("<계정삭제>");
 						System.out.printf("삭제할 사용자명 : ");
 						String name1 = scanner.nextLine();
 						for (BankAccount i : information) {
 							if (i.name.equals(name1)) {
-								information[i.id] = new BankAccount("삭제됨","",i.id,0);
-								isFound1 = true;
+								information[i.id] = new BankAccount("삭제됨", "", i.id, 0);
+								nameIsFound = true;
 								break;
 							}
 						}
-						if (isFound1 == false) {
+						if (nameIsFound==false) {
 							System.out.println("계정을 찾을 수 없음");
 						}
 						break;
@@ -157,18 +146,18 @@ public class JavaStart006 {
 						System.out.println(Arrays.toString(information));
 						break;
 					case 4:
-						boolean isFound = false;
+						boolean idIsFound = false;
 						System.out.println("<이름으로 정보 검색>");
 						System.out.print("이름 입력 : ");
-						String name2 = scanner.nextLine();
+						String inputId = scanner.nextLine();
 						for (BankAccount i : information) {
-							if (i.name.equals(name2)) {
+							if (i.name.equals(inputId)) {
 								System.out.println(information[i.id]);
-								isFound = true;
+								idIsFound = true;
 								break;
 							}
 						}
-						if (isFound == false) {
+						if (idIsFound == false) {
 							System.out.println("계정을 찾을 수 없음");
 						}
 						break;
@@ -182,37 +171,26 @@ public class JavaStart006 {
 			}
 		}
 		System.out.println("종료");
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
-
-//	private static void createAccount(BankAccount[] info) {
-//		java.util.Scanner scanner = new java.util.Scanner(System.in);
-//		System.out.print("사용할 사용자명 : ");//사용자명 중복은 체크안함
-//		String name = scanner.nextLine();
-//		System.out.print("사용할 비밀번호 : ");
-//		String passw = scanner.nextLine();
-//		
-//		BankAccount newAccount = new BankAccount(name,passw,info.length,0);
-//
-//		
-//	}
-
-	
-	private static BankAccount[] makeArray(BankAccount[] info,BankAccount[] temp, int length, String name, String passw, int index) {
-		BankAccount newinfo[]= new BankAccount[length];
-		for (int i=0;i<info.length;i++) {
-			newinfo[i]=temp[i];
+	private static BankAccount createAccount(BankAccount[] info) {
+			java.util.Scanner scanner = new java.util.Scanner(System.in);
+			System.out.print("사용할 사용자명 : ");//사용자명 중복은 체크안함
+			String name = scanner.nextLine();
+			System.out.print("사용할 비밀번호 : ");
+			String passw = scanner.nextLine();
+			
+			BankAccount newAccount = new BankAccount(name,passw,info.length-1,0);
+		return newAccount;
 		}
-		newinfo[index]= new BankAccount(name,passw,index,0);
-		
+
+	private static BankAccount[] makeArray(BankAccount[] info, BankAccount account) {
+		BankAccount newinfo[] = new BankAccount[info.length+1];
+		for (int i = 0; i < info.length; i++) {
+			newinfo[i] = info[i];
+		}
+		newinfo[account.id] = account;
 		return newinfo;
 	}
 }
