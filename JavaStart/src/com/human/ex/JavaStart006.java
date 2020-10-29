@@ -1,216 +1,185 @@
 package com.human.ex;
 
+import java.util.Arrays;
+
+import com.human.dto.BankAccount;
+
 public class JavaStart006 {
 
-	public static void main(String[] args) {//어플리케이션테스트문제
-		System.out.println("1-1)----------------------------");
-		System.out.println("11");
-		int a=1;
-		int b=1;
-		int c=1;
-		if(a==1) {
-			System.out.println("12");
-			if(b==1) {
-				System.out.println("03");
-			}else {
-				System.out.println("02");
-			}
-			System.out.println("04");
-			if(c==1) {
-				System.out.println("06");
-			}else {
-				System.out.println("05");
-			}
-			System.out.println("07");
-		}else {
-			System.out.println("13");
-			System.out.println("05");
+	private static BankAccount[] makeArray(BankAccount[] info,BankAccount[] temp, int length, String name, String passw, int index) {
+		BankAccount newinfo[]= new BankAccount[length];
+		for (int i=0;i<info.length;i++) {
+			newinfo[i]=temp[i];
 		}
-		System.out.println("14");
+		newinfo[index]= new BankAccount(name,passw,index,0);
 		
-		System.out.println("1-2-1)----------------------------");
-		if(a==1) {
-			System.out.println("11");
-			System.out.println("13");
-			while(a!=1) {
-				System.out.println("14");
-			}
-			System.out.println("15");
-		}else {
-			System.out.println("12");
-			System.out.println("16");
-		}
-		System.out.println("17");
-		
-		System.out.println("1-2-2-1)----------------------------");
-		System.out.println("01");
-		if(a==1) {
-			System.out.println("02");
-			while(a!=1) {
-				System.out.println("04");
-			}
-			System.out.println("06");
-		}else {
-			System.out.println("03");
-		}
-		System.out.println("07");
-		
-		System.out.println("1-2-2-2)----------------------------");
-		System.out.println("01");
-		while(a!=1) {
-			System.out.println("06");
-			if(a==1) {
-				System.out.println("07");
-			}
-			System.out.println("02");
-		}
-		System.out.println("06");
-		
-		System.out.println("1-3-1)----------------------------");
-		System.out.println("01");
-		if(a==1) {
-			System.out.println("03");
-			if(b==1) {
-				System.out.println("06");
-			}else {
-				System.out.println("07");
-				while(b!=1) {
-					System.out.println("13");
-					if(c==1) {
-						System.out.println("07");
+		return newinfo;
+	}
+	
+	
+	public static void main(String[] args) {
+		java.util.Scanner scanner = new java.util.Scanner(System.in);
+		int length=1;int index=0;boolean isAdmin=false;boolean isLogin=false;int idLoggedin=0;
+		BankAccount information[]= new BankAccount[length];
+		login:for(;;) {
+			BankAccount temp[]=information.clone();
+			System.out.printf("로그인:1, 회원가입:2%n입력 : ");//id=사용자명, 동명이인 고려x
+			int login = Integer.parseInt(scanner.nextLine());
+			switch (login) {
+			case 1:
+				System.out.printf("<로그인>%n사용자명 : ");
+				String name1=scanner.nextLine();
+				if(name1.equals("exit")) {
+					break login;
+				}else if(name1.equals("admin")) {
+					isAdmin=true;
+					System.out.print("비밀번호 입력 : ");
+					String passw1=scanner.nextLine();
+					if(passw1.equals("1111")) {
+						System.out.printf("관리자 로그인%n");
+						break login;
 					}else {
-						System.out.println("12");
+						System.out.println("잘못된 비밀번호입니다");
 					}
-					System.out.println("11");
+					break;
 				}
-				System.out.println("12");
+				for (BankAccount i:information) {
+					if(i.name.equals(name1)){
+						System.out.print("비밀번호 입력 : ");
+						String passw1=scanner.nextLine();
+						if(i.pw.equals(passw1)) {
+							System.out.printf("%s님으로 로그인%n",i.name);
+							isLogin=true;idLoggedin=i.id;
+							break login;
+						}else {
+							System.out.println("잘못된 비밀번호입니다");
+						}
+						break;
+					}else {
+						//login=0;
+					}
+				}
+				if (isLogin==false) {
+					System.out.println("사용자명을 찾을 수 없습니다");
+				}
+				break;
+			case 2:
+				System.out.println("<회원가입>");
+				System.out.print("사용할 사용자명 : ");
+				String name=scanner.nextLine();
+				System.out.print("사용할 비밀번호 : ");
+				String passw=scanner.nextLine();
+				information=makeArray(information,temp,length,name,passw,index);
+				length++;index++;
+				break;
+			default:
+				System.out.println("잘못된 입력");
+				break;
 			}
-			System.out.println("09");
+		}
+		if(isAdmin==false) {
+			bank: for (;;) {
+				int menu = 123;
+				System.out.println("1.입금 2.출금 3.조회 4.종료");
+				System.out.print("원하는 메뉴 입력 : ");
+				menu = Integer.parseInt(scanner.nextLine());
+				switch (menu) {
+				case 1:
+					for (BankAccount i : information) {
+						if(i.id==idLoggedin) {
+						System.out.print("입금할 금액 입력 : ");
+						i.balance += Integer.parseInt(scanner.nextLine());
+						}
+					}
+					break;
+				case 2:
+					for (BankAccount i : information) {
+						if(i.id==idLoggedin) {
+						System.out.print("출금할 금액 입력 : ");
+						int withdraw = Integer.parseInt(scanner.nextLine());
+						if (i.balance - withdraw < 0) {
+							System.out.println("잔액이 부족합니다");
+							break;
+						} else {
+							i.balance -= withdraw;
+						}
+						}
+					}
+					break;
+				case 3:
+					for (BankAccount i : information) {
+						if(i.id==idLoggedin) {
+						System.out.printf("%s님의 잔액 : %d%n", i.name, i.balance);
+						}
+					}
+					break;
+				case 4:
+					break bank;
+				default:
+					break;
+				}
+			}
 		}else {
-			System.out.println("02");
-			while(a!=1) {
-				System.out.println("04");
-			}
-			System.out.println("05");
-			System.out.println("08");
-		}
-		System.out.println("10");
-		
-		System.out.println("2-2-1)----------------------------");
-		System.out.println("01");
-		while(a!=1) {
-			System.out.println("07");
-			while(b!=1) {
-				System.out.println("08");
-			}
-			System.out.println("06");
-			while(c!=1) {
-				System.out.println("05");
-			}
-			System.out.println("02");
-		}
-		System.out.println("09");
-		
-		System.out.println("2-2-2)----------------------------");
-		System.out.println("01");
-		while(a!=1) {
-			System.out.println("04");
-			while(b!=1) {
-				System.out.println("06");
-				while(c!=1) {
-					System.out.println("07");
+			admin:for(;;) {
+				BankAccount temp[]=information.clone();
+				int menu = 123;
+				System.out.println("1.계정추가 2.계정삭제 3.모든사용자정보 4.id로 정보 검색 5.종료");
+				System.out.print("원하는 메뉴 입력 : ");
+				menu = Integer.parseInt(scanner.nextLine());
+				switch (menu) {
+				case 1:
+					System.out.println("<계정추가>");
+					System.out.print("추가할 사용자명 : ");
+					String name=scanner.nextLine();
+					System.out.print("사용할 비밀번호 : ");
+					String passw=scanner.nextLine();
+					information=makeArray(information,temp,length,name,passw,index);
+					length++;index++;
+					break;
+				case 2:
+					System.out.println("<계정삭제>");
+					System.out.printf("<삭제할 사용자명 : ");
+					String name1=scanner.nextLine();
+					for (BankAccount i:information) {
+						if(i.name.equals(name1)){
+							information[i.id]=null;
+						}else {
+							System.out.println("계정을 찾을 수 없음");
+						}
+					}
+					break;
+				case 3:
+					System.out.println("<전체 정보>");
+					System.out.println(Arrays.toString(information));
+					break;
+				case 4:
+					System.out.println("<id로 정보 검색>");
+					System.out.print("id 입력 : ");
+					String name2=scanner.nextLine();
+					for (BankAccount i:information) {
+						if(i.name.equals(name2)){
+							System.out.println(information[i.id]);
+						}else {
+							System.out.println("계정을 찾을 수 없음");
+						}
+					}
+					break;
+				case 5:
+					break admin;
+				default:
+					System.out.println("잘못된 입력");
+					break;
 				}
-				System.out.println("03");
 			}
-			System.out.println("02");
 		}
-		System.out.println("05");
+		System.out.println("종료");
 		
-		System.out.println("2-3-1)----------------------------");
-		System.out.print("1");
-		for(int i=0;i>22;i++) {
-			System.out.print("*");
-		}
-		System.out.println("1");
 		
-		System.out.println("2-3-2)----------------------------");
-		for(int i=0;i<4;i++) {
-			for(int j=0;j<5;j++) {
-				System.out.print("*");
-			}
-			System.out.print("1");
-		}
-		System.out.println();
 		
-		System.out.println("2-3-3)----------------------------");
-		for(int i=0;i<4;i++) {
-			System.out.print("2");
-			for(int j=0;j<5;j++) {
-				System.out.print("*");
-			}
-		}
-		System.out.println();
 		
-		System.out.println("2-3-4)----------------------------");
-		System.out.print("2");
-		System.out.print("1");
-		for(int j=0;j<22;j++) {
-			System.out.print("*");
-		}
-		System.out.println("1");
 		
-		System.out.println("2-3-5)----------------------------");
-		for(int i=0;i<4;i++) {
-			System.out.print("1");
-			for(int j=0;j<4;j++) {
-				System.out.print("*");
-			}
-			System.out.print("2");
-		}
-		System.out.println();
 		
-		System.out.println("2-3-6)----------------------------");
-		for(int i=0;i<4;i++) {
-			for(int j=0;j<4;j++) {
-				System.out.print("1");
-			}
-			for(int j=0;j<4;j++) {
-				System.out.print("*");
-			}
-			System.out.print("2");
-		}
-		System.out.println();
 		
-		System.out.println("2-3-7)----------------------------");
-		for(int i=0;i<3;i++) {
-			for(int j=0;j<4;j++) {
-				System.out.print("1");
-			}
-			for(int j=0;j<4;j++) {
-				System.out.print("*");
-			}
-			for(int j=0;j<4;j++) {
-				System.out.print("2");
-			}
-		}
-		System.out.println();
-		
-		System.out.println("2-3-8)----------------------------");
-		for(int i=0;i<3;i++) {
-			for(int j=0;j<4;j++) {
-				System.out.print("1");
-			}
-			for(int j=0;j<4;j++) {
-				System.out.print("2");
-			}
-			for(int j=0;j<4;j++) {
-				System.out.print("3");
-			}
-			for(int j=0;j<4;j++) {
-				System.out.print("4");
-			}
-		}
-		System.out.println();
 		
 		
 	}

@@ -1,54 +1,34 @@
 package com.human.ex;
 
-public class JavaStart005 {//교환
-
+public class JavaStart005 {//1029
+	
+	public static int functionA(int a) {
+		System.out.println("Astart");
+		a=functionB(a);
+		System.out.println("Aend");
+		return a+1;
+	}
+	public static int functionB(int a) {
+		System.out.println("Bstart");
+		System.out.println("Bend");
+		return a*2;
+	}
+	public static int functionC(int a) {
+		System.out.println("Cstart");
+		System.out.println("Cend");
+		return a+3;
+	}
+	public static int functionD(int a) {
+		System.out.println("Dstart");
+		System.out.println("Dend");
+		return a+4;
+	}
+	
 	public static void main(String[] args) {
-		java.util.Scanner scanner=new java.util.Scanner(System.in);
-		
-		System.out.println("1번--------------------------------");
-		System.out.print("a 입력 : ");
-		int a=Integer.parseInt(scanner.nextLine());
-		System.out.print("b 입력 : ");
-		int b=Integer.parseInt(scanner.nextLine());
-		int i;
-		i=a;
-		a=b;
-		b=i;
-		System.out.printf("a=%d b=%d %n",a,b);
-		
-		
-		System.out.println("2번--------------------------------");
-		System.out.print("숫자1 입력 : ");
-		int n1=Integer.parseInt(scanner.nextLine());
-		System.out.print("숫자2 입력 : ");
-		int n2=Integer.parseInt(scanner.nextLine());
-		System.out.print("숫자3 입력 : ");
-		int n3=Integer.parseInt(scanner.nextLine());
-		int x,y,z;
-		x=n1; y=n2; z=n3;
-		if(n1>n2) {
-			if(n1>n3) {
-				if(n2>n3) {
-					x=n1;y=n2;z=n3;
-				}else {
-					x=n1;y=n3;z=n2;
-				}
-			}else {
-			x=n3;y=n1;z=n2;
-			}
-		}else {
-			if(n2>n3) {
-				if(n1>n3) {
-					x=n2;y=n1;z=n3;
-				}else {
-					x=n2;y=n3;z=n1;
-				}
-			}else {
-			x=n3;y=n2;z=n1;
-			}
-		}
-		System.out.printf("%d, %d, %d%n",x,y,z);
-		
+		int a=1;	
+		System.out.println(functionA(a));	
+		System.out.println(functionC(a));		
+		System.out.println(functionD(a));
 	}
 
 }
