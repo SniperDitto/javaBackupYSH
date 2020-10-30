@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import com.human.dto.BankAccount;
 
-public class Bank {
+public class BankA {
 
 	public static void main(String[] args) {
 		java.util.Scanner scanner = new java.util.Scanner(System.in);
