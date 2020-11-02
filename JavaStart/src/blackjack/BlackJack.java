@@ -1,5 +1,6 @@
 package blackjack;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,9 +8,9 @@ class BJ{
 	public Scanner scanner = new Scanner(System.in);
 	public Random rand=new Random();
 	public int deck[]=new int[52];
-	public String cardShape[]={"스페이드","클로버","다이아","하트"};;
+	public String cardShape[]={"스페이드","다이아","하트","클로버"};
 	public String cardNumber[]= {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};//13칸
-	public int cardValue[];
+	public int cardValue[]=new int[13];
 	public int deckindex=0;//덱에서 다음 나눠줄 카드 위치
 	public int p1Deck[]= {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public int p2Deck[]= {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -19,7 +20,8 @@ class BJ{
 	public int p2Value=0;
 	public boolean p1Flag=true;
 	public boolean p2Flag=true;
-	public String playState="";
+	public int gameValue=0;//p1과 p2의 값 중 더 큰 수(둘 중 하나가 21넘으면 게임 종료되도록)
+	public String resultState="";
 	
 	public BJ() {
 		init();
@@ -46,6 +48,19 @@ class BJ{
 			}
 		}
 	}//init
+	public int getShape(int i) {
+		int returnValue=-1;
+		if(i>=0 && i<13) {
+			returnValue=0;
+		}else if(i>=13 && i<26) {
+			returnValue=1;
+		}else if(i>=26 && i<39) {
+			returnValue=2;
+		}else if(i>=39 && i<52) {
+			returnValue=3;
+		}
+		return returnValue;
+	}
 	public void shuffleDeck() {
 		for(int i=0;i<52;i++){//덱 섞기
 			int temp=deck[0];
@@ -68,7 +83,7 @@ class BJ{
 		int giveCardP1=Integer.parseInt(scanner.nextLine());
 			if (giveCardP1 == 1) {
 				p1Deck[p1Index] = deck[deckindex];
-				deckindex++;
+				deckindex++;p1Index++;
 			}else if(giveCardP1==0){
 				p1Flag=false;
 			}
@@ -80,7 +95,7 @@ class BJ{
 		int giveCardP2=Integer.parseInt(scanner.nextLine());
 			if (giveCardP2 == 1) {
 				p2Deck[p2Index] = deck[deckindex];
-				deckindex++;
+				deckindex++;p2Index++;
 			}else if(giveCardP2==0) {
 				p2Flag=false;
 			}
@@ -90,34 +105,82 @@ class BJ{
 
 	}
 	public void gameState() {
+		calcValue();
 		System.out.println("현재상황");
 		System.out.print("P1 : ");
 		for(int i=0;i<p1Index;i++) {
-			System.out.print(p1Deck[i]);//덱내용
+			String card=cardShape[getShape(p1Deck[i])].concat(cardNumber[p1Deck[i]%13]);
+			System.out.print(card+", ");//덱내용
 		}
-		System.out.print("\t총합 : ");
-		calcValue();
+		System.out.println();
+		System.out.print("총합 : ");
 		System.out.println(p1Value);
 		
 		System.out.print("P2 : ");
 		for(int i=0;i<p2Index;i++) {
-			System.out.print(p2Deck[i]);
+			String card=cardShape[getShape(p2Deck[i])].concat(cardNumber[p2Deck[i]%13]);
+			System.out.print(card+", ");
 		}
-		System.out.print("\t총합 : ");
-		calcValue();
+		System.out.println();
+		System.out.print("총합 : ");
 		System.out.println(p2Value);
-	}
-	private void calcValue() {
+		compareValue();
 		
+	}
+	public void compareValue() {//gamevalue 재설정
+		if(p1Value>=p2Value) {
+			gameValue=p1Value;
+		}else {
+			gameValue=p2Value;
+		}
+	}
+	public void calcValue() {
+		p1Value=0;p2Value=0;
+		for (int i=0;i<p1Index;i++) {
+			if(p1Deck[i]%13==0) {
+				if(p1Value+10 <=21) {
+					p1Value+=cardValue[p1Deck[i]%13]+10;
+				}
+			}else{
+				p1Value+=cardValue[p1Deck[i]%13];
+			}
+		}
+		for (int i=0;i<p2Index;i++) {
+			if(p2Deck[i]%13==0) {
+				if(p2Value+10 <=21) {
+					p2Value+=cardValue[p2Deck[i]%13]+10;
+				}
+			}else {
+				p2Value+=cardValue[p2Deck[i]%13];
+			}
+		}
 		
 	}
 
 	public void result() {
-		
+		if(p1Value==21) {
+			resultState="p1 승리";
+		}else if(p2Value==21) {
+			resultState="p2 승리";
+		}else if(p1Value>21 && p2Value>21) {
+			resultState="무승부(둘 다 21초과)";
+		}else if(p1Value<p2Value) {
+			resultState="p1 승리(p2 21초과)";
+		}else if(p1Value>p2Value) {
+			resultState="p2 승리(p1 21초과)";
+		}else if(p1Value==p2Value) {
+			resultState="무승부";
+		}
+		System.out.println(resultState);
 	}
 	public void playBlackJack() {
 		shuffleDeck();
-		
+		while (gameValue<=21) {
+			giveCard();
+			gameState();
+		}
+		result();
+		System.out.println("게임 끝");
 	}
 
 }//class BJ
@@ -126,7 +189,8 @@ class BJ{
 public class BlackJack {
 
 	public static void main(String[] args) {
-		
+		BJ blackjack1 = new BJ();
+		blackjack1.playBlackJack();
 		System.out.println("프로그램 종료");
 	}//main
 
