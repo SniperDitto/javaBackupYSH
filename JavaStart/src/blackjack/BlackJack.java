@@ -1,6 +1,5 @@
 package blackjack;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -26,7 +25,6 @@ class BJ{
 	public BJ() {
 		init();
 	}
-	
 	public void init() {//생성시 자동호출
 		for(int i=0;i<deck.length;i++){//덱 만들기
 			deck[i]=i;
@@ -35,7 +33,7 @@ class BJ{
 		for(int i=0;i<cardNumber.length;i++) {//각 카드가 가지는 값
 			switch (i%13) {
 			case 0:
-				cardValue[i]=1;
+				cardValue[i]=11;
 				break;
 			case 1:case 2:case 3:case 4:case 5:case 6:case 7:case 8:case 9:
 				cardValue[i]=i+1;
@@ -75,9 +73,6 @@ class BJ{
 		}
 	}
 	public void giveCard() {
-		if(p1Flag==false && p2Flag ==false) {
-			result();
-		}
 		if(p1Flag==true) {
 		System.out.print("플레이어1 카드 받기(0:받지 않음/1:받음) : ");
 		int giveCardP1=Integer.parseInt(scanner.nextLine());
@@ -106,7 +101,7 @@ class BJ{
 	}
 	public void gameState() {
 		calcValue();
-		System.out.println("현재상황");
+		System.out.println("-----현재상황-----");
 		System.out.print("P1 : ");
 		for(int i=0;i<p1Index;i++) {
 			String card=cardShape[getShape(p1Deck[i])].concat(cardNumber[p1Deck[i]%13]);
@@ -125,7 +120,7 @@ class BJ{
 		System.out.print("총합 : ");
 		System.out.println(p2Value);
 		compareValue();
-		
+		System.out.println("-----------");
 	}
 	public void compareValue() {//gamevalue 재설정
 		if(p1Value>=p2Value) {
@@ -137,26 +132,28 @@ class BJ{
 	public void calcValue() {
 		p1Value=0;p2Value=0;
 		for (int i=0;i<p1Index;i++) {
-			if(p1Deck[i]%13==0) {
-				if(p1Value+10 <=21) {
-					p1Value+=cardValue[p1Deck[i]%13]+10;
-				}
-			}else{
-				p1Value+=cardValue[p1Deck[i]%13];
-			}
+			p1Value+=cardValue[p1Deck[i]%13];
 		}
-		for (int i=0;i<p2Index;i++) {
-			if(p2Deck[i]%13==0) {
-				if(p2Value+10 <=21) {
-					p2Value+=cardValue[p2Deck[i]%13]+10;
+		if(p1Value>21) {
+			for(int j=0;j<p1Index;j++) {
+				if(p1Deck[j]%13==0) {//A 있는지 확인
+					p1Value-=10;
 				}
-			}else {
-				p2Value+=cardValue[p2Deck[i]%13];
 			}
 		}
 		
+		
+		for (int i=0;i<p2Index;i++) {
+			p2Value+=cardValue[p2Deck[i]%13];
+		}
+		if(p2Value>21) {
+			for(int j=0;j<p2Index;j++) {
+				if(p2Deck[j]%13==0) {//A 있는지 확인
+					p2Value-=10;
+				}
+			}
+		}
 	}
-
 	public void result() {
 		if(p1Value==21) {
 			resultState="p1 승리";
@@ -164,18 +161,22 @@ class BJ{
 			resultState="p2 승리";
 		}else if(p1Value>21 && p2Value>21) {
 			resultState="무승부(둘 다 21초과)";
-		}else if(p1Value<p2Value) {
-			resultState="p1 승리(p2 21초과)";
-		}else if(p1Value>p2Value) {
-			resultState="p2 승리(p1 21초과)";
+		}else if(p1Value<21 && Math.abs(p1Value-21)<Math.abs(p2Value-21)) {
+			resultState="p1 승리";
+		}else if(p2Value<21 && Math.abs(p1Value-21)>Math.abs(p2Value-21)) {
+			resultState="p2 승리";
 		}else if(p1Value==p2Value) {
 			resultState="무승부";
 		}
 		System.out.println(resultState);
 	}
 	public void playBlackJack() {
+		System.out.println("게임 시작");
 		shuffleDeck();
-		while (gameValue<=21) {
+		while (gameValue<21) {
+			if(p1Flag==false && p2Flag==false) {
+				break;
+			}
 			giveCard();
 			gameState();
 		}
@@ -192,6 +193,7 @@ public class BlackJack {
 		BJ blackjack1 = new BJ();
 		blackjack1.playBlackJack();
 		System.out.println("프로그램 종료");
+		//System.out.println(Arrays.toString(blackjack1.cardValue));
 	}//main
 
 }//파일 끝
