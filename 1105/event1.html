@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>event</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table, tr, td{
+            border-style: solid;
+            border-color: blue;
+            border-width: 1px;
+            border-collapse: collapse;
+            padding: 5px;
+            table-layout: auto;
+        }
+        table:hover, tr:hover, td:hover{
+            background-color: rgb(167, 136, 98);
+        }
+    </style>
+    <script>
+        
+        
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td onclick="alert('클릭')">클릭</td>
+            <td ondblclick="alert('더블클릭')">더블클릭</td>
+        </tr>
+        <tr>
+            <td onmouseover="alert('커서올림')">커서올리기</td>
+            <td onmouseout="alert('커서나감')">커서나가기</td>
+        </tr>
+        <tr>
+            <td onmousedown="alert('마우스눌림')">마우스버튼누르기</td>
+            <td onmouseup="alert('마우스뗌')">마우스버튼떼기</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <img src="1.gif" name=img1 border=10  onmouseover="document.images.img1.src='2.gif'" onmouseout="document.images.img1.src='1.gif'">
+</body>
+</html>

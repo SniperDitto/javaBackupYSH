@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1105</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table, tr, td{
+            border-style: solid;
+            border-color: blue;
+            border-width: 1px;
+            height: 30px;
+            width: 40px;
+            border-collapse: collapse;
+            padding: 5px;
+            table-layout: auto;
+        }
+    </style>
+    <script>
+        //var b=10; -> 위치 상관 없이 다른 곳에서도 사용 가능
+        //let b=10; -> 자바처럼 if문 등 블럭 내에서만 쓸 수 있는 변수
+        //var arr=[[1,2,3,4],[5,6,7,8],[9,10,11,12]];
+        /*
+        var a=[[],[],[]];
+        var index=1;
+        var text="";
+        text+="<table>";
+        for(var i=0;i<3;i++){
+            text+="<tr>";
+            for(var j=0;j<4;j++){
+                a[i][j]=index;
+                text+="<td>"+ index +"</td>";
+                index++;
+            }
+            text+="</tr>";
+        }
+        text+="</table>";
+        document.write(text);
+        */
+        function addTags(text){
+            document.getElementById(text).innerHTML=text;
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
