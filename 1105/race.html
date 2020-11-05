@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>race</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #line{
+            position: absolute;
+            left: 500px;
+            z-index: -1;
+            width: 10px;
+            height: 400px;
+            background-color: black;
+        }
+        #h1, #h2, #h3{
+            position: absolute;
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+        }
+        #h1{
+            top: 100px;
+        }
+        #h2{
+            top: 200px;
+        }
+        #h3{
+            top: 300px;
+        }
+        #win{
+            font-size: 20px;
+        }
+        #clear{
+            clear: both;
+        }
+    </style>
+    <script>
+        var A=Math.floor(Math.random()*10+1);;
+        var Adistance=0;
+        var B=Math.floor(Math.random()*10+1);;
+        var Bdistance=0;
+        var C=Math.floor(Math.random()*10+1);;
+        var Cdistance=0;
+        var race;
+        var raceEnd=0;
+        function increaseAB(){
+            if(raceEnd==0 && Adistance>=500){
+                document.getElementById("win").innerText="말1 승리 ";
+                raceEnd=1;
+            }else if(raceEnd==0 && Bdistance>=500){
+                document.getElementById("win").innerText="말2 승리 ";
+                raceEnd=1;
+            }else if(raceEnd==0 && Cdistance>=500){
+                document.getElementById("win").innerText="말3 승리 ";
+                raceEnd=1;
+            }
+            if(Adistance>=500){
+                A=0;
+                document.getElementById("state1").innerText="말1 도착 ";
+            }
+            if(Bdistance>=500){
+                B=0;
+                document.getElementById("state2").innerText="말2 도착 ";
+            }
+            if(Cdistance>=500){
+                C=0;
+                document.getElementById("state3").innerText="말3 도착 ";
+            }
+            if(A>=500 && B>=500 && C>=500){
+                clearInterval(race);
+            }
+            Adistance+=A;
+            Bdistance+=B;
+            Cdistance+=C;
+            document.getElementById("h1").style.marginLeft=Adistance+"px";
+            document.getElementById("h2").style.marginLeft=Bdistance+"px";
+            document.getElementById("h3").style.marginLeft=Cdistance+"px";
+        }
+        function start(){
+            stop();
+            race=setInterval( increaseAB ,50);
+        }
+        function stop(){
+            clearInterval(race);
+        }
+        function reset(){
+            document.getElementById("h1").style.marginLeft=0+"px";
+            document.getElementById("h2").style.marginLeft=0+"px";
+            document.getElementById("h3").style.marginLeft=0+"px";
+            document.getElementById("win").innerText=" ";
+            document.getElementById("state1").innerText=" ";
+            document.getElementById("state2").innerText=" ";
+            document.getElementById("state3").innerText=" ";
+            A=Math.floor(Math.random()*10+1);;
+            Adistance=0;
+            B=Math.floor(Math.random()*10+1);;
+            Bdistance=0;
+            C=Math.floor(Math.random()*10+1);;
+            Cdistance=0;
+            raceEnd=0;
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="start" onclick="start()">
+    <input type="button" value="stop" onclick="stop()">
+    <input type="button" value="reset" onclick="reset()">
+    <div id="clear"></div>
+    <div>
+        <img id="h1" src="horse.gif" >
+    </div>
+    <div>
+        <img id="h2" src="horse.gif" >
+    </div>
+    <div>
+        <img id="h3" src="horse.gif" >
+    </div>
+    <div id="line"></div>
+    <div id="win"></div>
+    <div id="state1"></div>
+    <div id="state2"></div>
+    <div id="state3"></div>
+</body>
+</html>
