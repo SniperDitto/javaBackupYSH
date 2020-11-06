@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>전광판</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            border: 1px;
+        }
+        tr, td{
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+    <script>
+        var tableText = "";
+        var boardSizeX=30;var boardSizeY=10;//전광판 가로세로크기
+        function Board(x, y, color) {//표만들기
+            tableText += "<table>";
+            for (var i = 0; i < y; i++) {
+                tableText += "<tr>";
+                for (var j = 0; j < x; j++) {
+                    tableText += "<td ";
+                    tableText += 'id = "x' + j + 'y' + i + '" ';//id = "x1y1"
+                    tableText += 'bgColor = "' + color + '" ';//bgColor = "색깔이름"
+                    tableText += ">";
+                    tableText += "</td>";
+                }
+                tableText += "</tr>";
+            }
+            tableText += "</table>";
+            return tableText;
+        }
+        function DrawSquare(x,y){//사각형그리기
+            for(var i=x;i<(x+5);i++){//가로
+                var temp=(i >= boardSizeX ? i%boardSizeX : i);
+                document.getElementById("x"+temp+"y"+y).bgColor = "pink";
+                document.getElementById("x"+temp+"y"+(y+5)).bgColor = "pink";
+            }
+            for(var i=y;i<=(y+5);i++){//세로
+                var temp=(x >= boardSizeX ? x%boardSizeX : x);
+                var temp2=((x+5) >= boardSizeX ? (x+5)%boardSizeX : (x+5));
+                document.getElementById("x"+temp+"y"+i).bgColor="pink";
+                document.getElementById("x"+temp2+"y"+i).bgColor="pink";
+            }
+        }
+        function DrawLOVE(x,y){
+            for(var i=y;i<(y+7);i++){//L 세로줄
+                var temp=(x >= boardSizeX ? x%boardSizeX : x);//board X크기 넘어가면 값 보정
+                document.getElementById("x"+temp+"y"+i).bgColor="pink";
+            }
+            for(var i=x;i<(x+5);i++){//L 가로줄
+                var temp=(i >= boardSizeX ? i%boardSizeX : i);
+                document.getElementById("x"+temp+"y"+(y+7)).bgColor = "pink";
+            }
+
+            for(var i=(y+2);i<=(y+5);i++){//O 양끝세로줄
+                var temp=((x+6) >= boardSizeX ? (x+6)%boardSizeX : (x+6));
+                var temp2=((x+11) >= boardSizeX ? (x+11)%boardSizeX : (x+11));
+                document.getElementById("x"+temp+"y"+i).bgColor="pink";
+                document.getElementById("x"+temp2+"y"+i).bgColor="pink";
+            }
+            for(var i=(x+8);i<=(x+9);i++){//O 위아래가로줄
+                var temp=(i >= boardSizeX ? i%boardSizeX : i);
+                document.getElementById("x"+temp+"y"+y).bgColor = "pink";
+                document.getElementById("x"+temp+"y"+(y+7)).bgColor = "pink";
+            }
+            for(var i=0;i<2;i++){//O 대각선4방향
+                var temp=((x+7) >= boardSizeX ? (x+7)%boardSizeX : (x+7));
+                var temp2=((x+10) >= boardSizeX ? (x+10)%boardSizeX : (x+10));
+                document.getElementById("x"+temp+"y"+(y+1)).bgColor = "pink";
+                document.getElementById("x"+temp2+"y"+(y+1)).bgColor = "pink";
+                document.getElementById("x"+temp+"y"+(y+6)).bgColor = "pink";
+                document.getElementById("x"+temp2+"y"+(y+6)).bgColor = "pink";
+            }
+
+            for(var i=y;i<=(y+5);i++){//V세로줄
+                var temp=((x+13) >= boardSizeX ? (x+13)%boardSizeX : (x+13));
+                var temp2=((x+17) >= boardSizeX ? (x+17)%boardSizeX : (x+17));
+                document.getElementById("x"+temp+"y"+i).bgColor = "pink";
+                document.getElementById("x"+temp2+"y"+i).bgColor = "pink";
+            }
+            for(var i=0;i<2;i++){
+                var temp=((x+14) >= boardSizeX ? (x+14)%boardSizeX : (x+14));
+                var temp2=((x+16) >= boardSizeX ? (x+16)%boardSizeX : (x+16));
+                document.getElementById("x"+temp+"y"+(y+6)).bgColor = "pink";
+                document.getElementById("x"+temp2+"y"+(y+6)).bgColor = "pink";
+            }
+            for(var i=0;i<1;i++){//V꼭짓점
+                var temp=((x+15) >= boardSizeX ? (x+15)%boardSizeX : (x+15));
+                document.getElementById("x"+temp+"y"+(y+7)).bgColor = "pink";
+            }
+
+            for(var i=(x+19);i<=(x+23);i++){//E가로줄
+                var temp=(i >= boardSizeX ? i%boardSizeX : i);
+                document.getElementById("x"+temp+"y"+y).bgColor = "pink";
+                document.getElementById("x"+temp+"y"+(y+4)).bgColor = "pink";
+                document.getElementById("x"+temp+"y"+(y+7)).bgColor = "pink";
+            }
+            for(var i=y;i<=(y+7);i++){//E세로줄
+                var temp=((x+19) >= boardSizeX ? (x+19)%boardSizeX : (x+19));
+                document.getElementById("x"+temp+"y"+i).bgColor = "pink";
+            }
+        }
+        
+        function ResetBoard() {
+            for (var i = 0; i < boardSizeY; i++) {
+                for (var j = 0; j < boardSizeX; j++) {
+                    document.getElementById("x" + j + "y" + i).bgColor = "lightgray";
+                }
+            }
+        }
+        
+        document.write(Board(boardSizeX,boardSizeY,"lightgray"))
+        var startX=1;var startY=1;
+        //DrawSquare(startX,startY);
+        var drawInterval = setInterval(function(){
+            ResetBoard();
+            DrawLOVE(startX,startY);
+            startX++;
+        },200);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

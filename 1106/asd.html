@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>전광판1</title>
+    <script>
+        var colSize = 50;
+        var rowSize = 11;
+        function ChangeColor(x, y, color) {
+            document.getElementById("x" + x + "y" + y).bgColor = color;
+        }
+        document.write("<table border='1'>");
+        for (var i = 0; i < rowSize; i++) {
+            document.write("<tr>");
+            for (var j = 0; j < colSize; j++) {
+                document.write("<td width=12 height=12 id='x" + j + "y" + i + "'> </td>");
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+        function drawI(x, y) {
+            //I그리기
+            for (var i = x; i < (x + 5); i++) {
+                document.getElementById("x" +
+                    ((x + (i - x)) >= colSize ? ((x + (i - x)) % colSize) : i) + "y" + y).bgColor = "red";
+                document.getElementById("x" +
+                    ((x + (i - x)) >= colSize ? ((x + (i - x)) % colSize) : i) + "y" + (y + 8)).bgColor = "red";
+            }
+            for (var i = (y + 1); i < (y + 8); i++) {
+                document.getElementById("x" +
+                    ((x + 2) >= colSize ? ((x + 2) % colSize) : (x + 2)) + "y" + i).bgColor = "red";
+            }
+            //L그리기
+            for (var i = y; i < 9; i++) {
+                document.getElementById("x" +
+                    ((x + 8) >= colSize ? ((x + 8) % colSize) : (x + 8)) + "y" + i).bgColor = "red";
+            }
+            for (var i = 0; i < 5; i++) {
+                document.getElementById("x" +
+                    (((x + 8) + i) >= colSize ? ((x + 8) + i) % colSize : ((x + 8) + i)) + "y" + (y + 8)).bgColor = "red";
+            }
+            //O그리기
+            for (var i = 0; i < 3; i++) {
+                document.getElementById("x" +
+                    (((x + 15) + i) >= colSize ? ((x + 15) + i) % colSize : ((x + 15) + i)) + "y" + y).bgColor = "red";
+                document.getElementById("x" +
+                    (((x + 15) + i) >= colSize ? ((x + 15) + i) % colSize : ((x + 15) + i)) + "y" + (y + 8)).bgColor = "red";
+            }
+            for (var i = (y + 1); i < (y + 8); i++) {
+                document.getElementById("x" +
+                    ((x + 14) >= colSize ? (x + 14) % colSize : (x + 14)) + "y" + i).bgColor = "red";
+                document.getElementById("x" +
+                    ((x + 18) >= colSize ? (x + 18) % colSize : (x + 18)) + "y" + i).bgColor = "red";
+            }
+            //V그리기
+            for (var i = y; i < 8; i++) {
+                document.getElementById("x" +
+                    ((x + 20) >= colSize ? (x + 20) % colSize : (x + 20)) + "y" + i).bgColor = "red";
+                document.getElementById("x" +
+                    ((x + 24) >= colSize ? (x + 24) % colSize : (x + 24)) + "y" + i).bgColor = "red";
+            }
+            document.getElementById("x" +
+                ((x + 21) >= colSize ? (x + 21) % colSize : (x + 21)) + "y" + (y + 7)).bgColor = "red";
+            document.getElementById("x" +
+                ((x + 23) >= colSize ? (x + 23) % colSize : (x + 23)) + "y" + (y + 7)).bgColor = "red";
+            document.getElementById("x" +
+                ((x + 22) >= colSize ? (x + 22) % colSize : (x + 22)) + "y" + (y + 8)).bgColor = "red";
+            //E그리기
+            for (var i = 0; i < 5; i++) {
+                document.getElementById("x" +
+                    (((x + 26) + i) >= colSize ? ((x + 26) + i) % colSize : (x + 26) + i) + "y" + y).bgColor = "red";
+                document.getElementById("x" +
+                    (((x + 26) + i) >= colSize ? ((x + 26) + i) % colSize : (x + 26) + i) + "y" + (y + 4)).bgColor = "red";
+                document.getElementById("x" +
+                    (((x + 26) + i) >= colSize ? ((x + 26) + i) % colSize : (x + 26) + i) + "y" + (y + 8)).bgColor = "red";
+            }
+            for (var i = y; i < 9; i++) {
+                document.getElementById("x" +
+                    ((x + 26) >= colSize ? (x + 26) % colSize : (x + 26)) + "y" + i).bgColor = "red";
+            }
+            //U그리기
+            for (var i = y; i < 9; i++) {
+                document.getElementById("x" +
+                    ((x + 34) >= colSize ? (x + 34) % colSize : (x + 34)) + "y" + i).bgColor = "red";
+                document.getElementById("x" +
+                    ((x + 38) >= colSize ? (x + 38) % colSize : (x + 38)) + "y" + i).bgColor = "red";
+            }
+            for (var i = 0; i < 3; i++) {
+                document.getElementById("x" +
+                    (((x + 35) + i) >= colSize ? ((x + 35) + i) % colSize : (x + 35) + i) + "y" + (y + 8)).bgColor = "red";
+            }
+            //하트그리기
+            for (var i = (y + 1); i < (y + 8); i++) {
+                document.getElementById("x" +
+                    ((x + 15) >= colSize ? (x + 15) % colSize : (x + 15)) + "y" + i).bgColor = "lightpink";
+                document.getElementById("x" +
+                    ((x + 16) >= colSize ? (x + 16) % colSize : (x + 16)) + "y" + i).bgColor = "lightpink";
+                document.getElementById("x" +
+                    ((x + 17) >= colSize ? (x + 17) % colSize : (x + 17)) + "y" + i).bgColor = "lightpink";
+                document.getElementById("x" +
+                    ((x + 19) >= colSize ? (x + 19) % colSize : (x + 19)) + "y" + i).bgColor = "lightpink";
+            }
+            for (var i = y; i < (y + 7); i++) {
+                document.getElementById("x" +
+                    ((x + 21) >= colSize ? (x + 21) % colSize : (x + 21)) + "y" + i).bgColor = "lightpink";
+                document.getElementById("x" +
+                    ((x + 22) >= colSize ? (x + 22) % colSize : (x + 22)) + "y" + i).bgColor = "lightpink";
+                document.getElementById("x" +
+                    ((x + 23) >= colSize ? (x + 23) % colSize : (x + 23)) + "y" + i).bgColor = "lightpink";
+            }
+            for (var i = (y + 1); i < (y + 6); i++) {
+                document.getElementById("x" +
+                    ((x + 13) >= colSize ? (x + 13) % colSize : (x + 13)) + "y" + i).bgColor = "lightpink";
+                document.getElementById("x" +
+                    ((x + 25) >= colSize ? (x + 25) % colSize : (x + 25)) + "y" + i).bgColor = "lightpink";
+            }
+            for (var i = 0; i < 3; i++) {
+                document.getElementById("x" +
+                    (((x + 15) + i) >= colSize ? ((x + 15) + i) % colSize : (x + 15) + i) + "y" + (y - 1)).bgColor = "lightpink";
+                document.getElementById("x" +
+                    (((x + 21) + i) >= colSize ? ((x + 21) + i) % colSize : (x + 21) + i) + "y" + (y - 1)).bgColor = "lightpink";
+            }
+            for (var i = 0; i < 5; i++) {
+                document.getElementById("x" +
+                    (((x + 17) + i) >= colSize ? ((x + 17) + i) % colSize : (x + 17) + i) + "y" + (y + 9)).bgColor = "lightpink";
+            }
+            for (var i = 0; i < 4; i++) {
+                document.getElementById("x" +
+                    (((x + 18) + i) >= colSize ? ((x + 18) + i) % colSize : (x + 18) + i) + "y" + (y + 8)).bgColor = "lightpink";
+            }
+            document.getElementById("x" +
+                ((x + 14) >= colSize ? (x + 14) % colSize : (x + 14)) + "y" + y).bgColor = "lightpink";
+            document.getElementById("x" +
+                ((x + 18) >= colSize ? (x + 18) % colSize : (x + 18)) + "y" + y).bgColor = "lightpink";
+            document.getElementById("x" +
+                ((x + 20) >= colSize ? (x + 20) % colSize : (x + 20)) + "y" + (y + 7)).bgColor = "lightpink";
+            document.getElementById("x" +
+                ((x + 22) >= colSize ? (x + 22) % colSize : (x + 22)) + "y" + (y + 7)).bgColor = "lightpink";
+        }
+
+        function deleteI() {
+            for (var i = 0; i < rowSize; i++) {
+                for (var j = 0; j < colSize; j++) {
+                    document.getElementById("x" + j + "y" + i).bgColor = "white";
+                }
+            }
+        }
+
+        var x = 0; var y = 1;
+        drawI(x, y);
+
+        var intervalID = setInterval(function () {
+            deleteI();
+            drawI(x, y);
+            x++;
+        }, 150);
+
+    </script>
+    
+</head>
+<body>
+</body>
+</html>

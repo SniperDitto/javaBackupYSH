@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border: 1px;
+        }
+
+        tr,
+        td {
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+    <script>
+        //배열 만들어서 1010
+        //배열을 한칸씩 오른쪽으로 민다
+        var tableText = "";
+        function Board(x, y, color) {
+            tableText += "<table>";
+            for (var i = 0; i < y; i++) {
+                tableText += "<tr>";
+                for (var j = 0; j < x; j++) {
+                    tableText += "<td ";
+                    tableText += 'id = "x' + j + 'y' + i + '" ';//id = "x1y1"
+                    tableText += 'bgColor = "' + color + '" ';//bgColor = "색깔이름"
+                    //tableText+=''
+                    tableText += ">";
+                    tableText += "</td>";
+                }
+                tableText += "</tr>";
+            }
+            tableText += "</table>";
+            return tableText;
+        }
+        function changeColor(x, y) {//해당좌표 배경색 변경
+            if (x > 60) {
+                x = (x % 60) - 1;
+            }
+            document.getElementById("x" + x + "y" + y).bgColor = "pink";
+        }
+        function resetColor(x, y) {
+            for (var i = 0; i < y; i++) {
+                for (var j = 0; j < x; j++) {
+                    document.getElementById("x" + j + "y" + i).bgColor = "aquamarine";
+                }
+            }
+        }
+        function makeL(startX, startY) {
+            for (var i = startY; i < (startY + 19); i++) {
+                changeColor((startX - 1), i);
+            }
+            for (var j = (startX - 1); j < (startX + 6); j++) {
+                changeColor(j, (startY + 18));
+            }
+        }
+        function makeO(startX, startY) {
+            for (var i = startY + 3; i < startY + 16; i++) {//왼쪽막대
+                changeColor(startX, i);
+            }
+            changeColor(startX + 2, startY + 1);//왼쪽대각선위
+            changeColor(startX + 1, startY + 2);
+            for (var i = startX + 3; i < startX + 7; i++) {//위쪽
+                changeColor(i, startY);
+            }
+            changeColor(startX + 7, startY + 1);//오른쪽대각선위
+            changeColor(startX + 8, startY + 2);
+            for (var i = startX + 3; i < startX + 7; i++) {//아래쪽
+                changeColor(i, startY + 18);
+            }
+            changeColor(startX + 2, startY + 17);//왼쪽대각선아래
+            changeColor(startX + 1, startY + 16);
+            for (var i = startY + 3; i < startY + 16; i++) {//오른쪽막대
+                changeColor(startX + 9, i);
+            }
+            changeColor(startX + 7, startY + 17);//오른쪽대각선아래
+            changeColor(startX + 8, startY + 16);
+        }
+        function makeV(startX, startY) {
+            for (var i = startY; i < startY + 8; i++) {//왼쪽막대
+                changeColor(startX, i);
+            }
+            for (var i = startY + 8; i < startY + 12; i++) {//왼쪽막대
+                changeColor(startX + 1, i);
+            }
+            for (var i = startY + 12; i < startY + 15; i++) {//왼쪽막대
+                changeColor(startX + 2, i);
+            }
+            for (var i = startY + 15; i < startY + 17; i++) {//왼쪽막대
+                changeColor(startX + 3, i);
+            }
+            changeColor(startX + 4, startY + 17);//맨아래
+            changeColor(startX + 5, startY + 18);
+            changeColor(startX + 6, startY + 17);//맨아래
+            for (var i = startY + 15; i < startY + 17; i++) {//오른쪽막대
+                changeColor(startX + 7, i);
+            }
+            for (var i = startY + 12; i < startY + 15; i++) {//오른쪽막대
+                changeColor(startX + 8, i);
+            }
+            for (var i = startY + 8; i < startY + 12; i++) {//오른쪽막대
+                changeColor(startX + 9, i);
+            }
+            for (var i = startY; i < startY + 8; i++) {//오른쪽막대
+                changeColor(startX + 10, i);
+            }
+        }
+        function makeE(startX, startY) {
+            for (var i = startY; i < startY + 19; i++) {
+                changeColor(startX, i);
+            }
+            for (var j = startX + 1; j < startX + 9; j++) {
+                changeColor(j, startY);
+                changeColor(j, startY + 9);
+                changeColor(j, startY + 18);
+            }
+        }
+        function makeLOVE(startX) {
+            makeL(startX, 4);//7,4
+            makeO(startX + 9, 4);//16,4
+            makeV(startX + 24, 4);//31,4
+            makeE(startX + 39, 4);//46,4
+        }
+        document.write(Board(60,30,"aquamarine"));
+        var x = 0;
+        var draw = setInterval(function () {
+            resetColor(60, 30);
+            
+            x += 1;
+            if (x > 60) {
+                x = (x % 60) - 1;
+            }
+            makeLOVE(x + 5);
+        }, 500);
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
