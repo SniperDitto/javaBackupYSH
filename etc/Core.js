@@ -1,4 +1,0 @@
-var core=[];
-function addCore(){
-    
-}
