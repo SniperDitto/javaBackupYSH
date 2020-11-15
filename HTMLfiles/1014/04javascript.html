@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        th,td{
+            padding: 5px;
+        }
+        th{
+            text-align: center;
+        }
+    </style>
+    <script>
+        // var str="";
+        // var imgname="on.png";
+        // str="<img src='"+imgname+"'/>"
+        // document.writeln(str);
+        // var str="<table border=1>";
+        // str+="<tr><td></td><td></td></tr>";
+        // str+="<tr><td></td><td></td></tr>";
+        // str+="<tr><td></td><td></td></tr>";
+        // str+="</table>";
+        // document.writeln(str);
+
+        // for(var i=0;i<5;i++){
+        //     document.writeln('안녕'+i,"<br>");
+        // }
+        
+        // for (var j=0;j<5;j++){
+        //     document.writeln('횟수:'+(j+1));
+        //     for(var i=0;i<5;i++){
+        //     document.writeln('안녕'+i);
+        //     }
+        //     document.writeln("<br>");
+        // }
+//------------------------------------------------------
+        // document.write("구구단","<br>");
+        // for(var i=1;i<=9;i++){
+        //     document.write(i+"단","<br>");
+        //     for(var j=1;j<=9;j++){
+        //         document.write(i+" * "+j+" = "+(i*j),"<br>");
+        //     }
+        // }
+
+        // var a=prompt("표 만들기","행 입력");
+        // var b=prompt("표 만들기","열 입력");
+        // var table1="<table border=1>";
+        // for(var i=1;i<=b;i++){
+        //     table1+="<tr>";
+        //     for(var j=1;j<=a;j++){
+        //         table1+="<td></td>";
+        //     }
+        //     table1+="</tr>";
+        // }
+        // table1+="</table>";
+        // document.write(table1);
+
+        // var table1="<table border=1>";
+        // for(var i=1;i<=2;i++){
+        //     table1+="<tr>";
+        //     if(i==1){
+        //         for(var j=1;j<=9;j++){
+        //             table1+="<th>";
+        //             table1+=j+"단";
+        //             table1+="</th>";
+        //         }
+        //         table1+="</tr>";
+        //     }else if(i==2){
+        //         table1+="<tr>";
+        //         for(var j=1;j<=9;j++){
+        //             table1+="<td>";
+        //             for(var k=1;k<=9;k++){
+        //                 table1+=j+" * "+k+" = "+(j*k)+"<br>";
+        //             }
+        //             table1+="</td>";
+        //         }
+        //         table1+="</tr>";
+        //     }
+            
+        // }
+        // table1+="</table>";
+        // document.write(table1);
+
+        var td=prompt("표 만들기","행 입력");
+        var tr=prompt("표 만들기","열 입력");        
+        var int=1;
+        var str="";
+        str+="<table border=1>";
+        for (var i=0;i<tr;i++){
+            str+="<tr>";
+            for(var j=0;j<td;j++){
+                str+="<td>";
+                str+=int;
+                int++;
+                str+="<td>";
+            }
+            str+="</tr>";
+        }
+        str+="</table>";    
+        document.write(str);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

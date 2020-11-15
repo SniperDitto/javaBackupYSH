@@ -1,0 +1,34 @@
+시작
+a=숫자1입력
+b=숫자2입력
+c=숫자3입력
+x=a
+y=b
+z=c
+if(a>b){
+    if(c>b){
+        if(c>a){
+            a=y
+            b=x
+        }else{
+            a=y
+            b=z
+            c=x
+        }
+        a=z
+        c=x
+    }
+}else{
+    if(c<b){
+        if(c>a){
+            b=z
+            c=y
+        }else{
+            a=z
+            b=x
+            c=y
+        }
+    }
+}
+print(a,b,c)
+끝

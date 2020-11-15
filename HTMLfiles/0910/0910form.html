@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>form 실습</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+
+		<form>
+		<p><label for="id">아이디</label><input type="txt" id="id">
+		<input type="button" value="중복확인">
+		</p>
+		<p><label for="pw">비밀번호</label><input type="password" id="pw">
+		</p>
+		<p>성별
+		<input type="radio" id="male" name="gender" checked="checked"><label for="male">남자</label>
+		<input type="radio" id="female" name="gender"><label for="female">여자</label>
+		</p>
+		<p>이메일수신
+		<input type="radio" id="yes" name="email" checked="checked"><label for="yes">예</label>
+		<input type="radio" id="no" name="email"><label for="no">아니오</label>
+		</p>
+		<p>취미
+		<input type="checkbox" id="reading" name="hobby"><label for="reading">독서</label>
+		<input type="checkbox" id="game" name="hobby"><label for="game">게임</label>
+		<input type="checkbox" id="movie" name="hobby"><label for="movie">영화감상</label>
+		</p>
+		<p><label for="hp">핸드폰번호</label>
+		<select id="hp">
+			<option>010</option>
+			<option>011</option>
+			<option>016</option>
+			<option>017</option>
+			<option>018</option>
+			<option>019</option>
+		</select>
+		 - <input type="text" maxlength="4">
+		 - <input type="text" maxlength="4">
+		</p>
+		<p><input type="submit" value="회원가입">
+		<input type="reset" value="다시입력">
+    		</p><br><br>
+		</form>
+
+		<form>
+		<label for="title">제목</label><input type="text" id="title"><br>
+		<label for="file">파일올리기</label><input type="file" id="file"><br>
+		<label for="text1">내용</label>
+		<textarea rows="5"></textarea>
+		</form>
+
+	</body>
+</html>

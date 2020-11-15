@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        var count=1;
+        var sum=0;
+
+        while (count<=100){
+            if (count%3==0){
+                sum=sum+count;
+            }
+            count++;
+        }
+        document.writeln("sum"+sum);
+
+        var sum=0;
+        for(var i=1;i<=100;i++){
+            if(i%3==0||i%4==0){
+                sum=sum+i;
+            }
+        }
+        document.writeln(sum);
+
+        var sum=0;
+        var count=1;
+        do{
+            sum=sum+count;
+            count++;
+        }while(count<=10);
+        document.writeln(sum);
+
+        for(var i=1;i<=5;i++){
+            document.writeln(i);
+            if(i==3){
+                break;
+            }
+        }
+
+        for(var i=1;i<=5;i++){
+            if(i==3){
+                continue;
+            }
+            document.writeln(i);
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

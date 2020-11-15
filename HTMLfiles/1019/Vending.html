@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>자판기</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            width: 1000px;
+            margin: auto;
+        }
+        #clear{
+            clear: both;
+        }
+        #header{
+            width: 1000px;
+            height: 50px;
+            margin-bottom: 10px;
+            float: left;
+            text-align: center;
+            background-color:lightslategray;
+        }
+        #menu{
+            width: 750px;
+            height: 600px;
+            float: left;
+            text-align: center;
+        }
+        #coke, #cider, #fanta, #coffee1, #coffee2, #coffee3{
+            width: 250px;
+            height: 300px;
+            float: left;
+            
+        }
+        #money{
+            width: 250px;
+            height: 600px;
+            float: left;
+            background-color: lightblue;
+            text-align: center;
+        }
+        #contents{
+            width: 1000px;
+            height: 300px;
+            background-color: lightcoral;
+        }
+    </style>
+    <script>
+        function moneyInput(int){
+            var i=Number(document.getElementById("t1").value) + int;
+            document.getElementById("t1").value=i;
+        }
+        function buyDrinks(int,name){
+            var j=Number(document.getElementById("t1").value) - int;
+            if(j<0){
+                alert("잔액 부족");
+            }else{
+                document.getElementById("t1").value=j;
+                document.getElementById("contents").innerHTML+="<img src="+name+".jpg>";
+            }
+        }
+        function changes(){
+            var k=Number(document.getElementById("t1").value);
+            document.getElementById("c1000").value=Math.floor(k/1000);
+            document.getElementById("c500").value=Math.floor((k%1000)/500);
+            document.getElementById("c100").value=Math.floor((k%500)/100);
+            document.getElementById("c50").value=Math.floor((k%100)/50);
+            document.getElementById("t1").value=0;
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">자판기</div>
+        <div id="clear"></div>
+        <div id="menu">
+            <div id="coke">
+                <img src="coke.jpg"><br>
+                <input type='button' onclick="buyDrinks(500,'coke')" value="500원"/>
+            </div>
+            <div id="cider">
+                <img src="cider.jpg"><br>
+                <input type='button' onclick="buyDrinks(700,'cider')" value="700원"/>
+            </div>
+            <div id="fanta">
+                <img src="fanta.jpg"><br>
+                <input type='button' onclick="buyDrinks(350,'fanta')" value="350원"/>
+            </div>
+            
+            <div id="coffee1">
+                <img src="coffee1.jpg"><br>
+                <input type='button' onclick="buyDrinks(300,'coffee1')" value="300원"/>
+            </div>
+            <div id="coffee2">
+                <img src="coffee2.jpg"><br>
+                <input type='button' onclick="buyDrinks(400,'coffee2')" value="400원"/>
+            </div>
+            <div id="coffee3">
+                <img src="coffee3.jpg"><br>
+                <input type='button' onclick="buyDrinks(450,'coffee3')" value="450원"/>
+            </div>
+        </div>
+        <div id="money">
+            동전투입<br>
+            <input type='button' onclick="moneyInput(1000)" value="1000"/><br>
+            <input type='button' onclick="moneyInput(500)" value="500"/><br>
+            <input type='button' onclick="moneyInput(100)" value="100"/><br>
+            <input type='button' onclick="moneyInput(50)" value="50"/><br>
+            잔액<input type='text' id="t1" value="0"/>원<br>
+            <input type='button' onclick="changes()" value="반환"/><br>
+            <br>
+            <br>
+            <br>
+            반환<br>
+            1000원<input type='text' id="c1000" value="0"/>개<br>
+            500원<input type='text' id="c500" value="0"/>개<br>
+            100원<input type='text' id="c100" value="0"/>개<br>
+            50원<input type='text' id="c50" value="0"/>개<br>
+        </div>
+        <div id="clear"></div>
+        <div id="contents">음료나오는곳<br></div>
+    </div>
+</body>
+</html>

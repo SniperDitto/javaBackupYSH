@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1105</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        
+        function checkDate(){
+            var timeIn = document.getElementById("timeIn").value;
+            var timeInDate = new Date(timeIn);
+            var timeNow = new Date();
+            var dif = timeNow.getTime()-timeInDate.getTime();
+            var d = dif/(60*60*1000);
+            var charge=Math.floor(d*1200);
+            if(charge%100!==0){
+                charge=Math.floor(charge/100)*100;
+            }
+            alert(charge+"원");
+        }
+    </script>
+</head>
+<body>
+    
+    들어온 시각 : <input type="datetime-local" id="timeIn"><br>
+    
+    <input type="button" onclick="checkDate()" value="요금계산">
+    
+</body>
+</html>
