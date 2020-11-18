@@ -1,6 +1,6 @@
-package com.human.dto;
+package bank;
 
-import com.human.dto.BankAccount;
+import bank.BankAccount;
 
 public class Bank {
 	java.util.Scanner scanner = new java.util.Scanner(System.in);

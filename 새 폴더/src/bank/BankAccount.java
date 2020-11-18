@@ -1,4 +1,4 @@
-package com.human.dto;
+package bank;
 
 
 public class BankAccount {
