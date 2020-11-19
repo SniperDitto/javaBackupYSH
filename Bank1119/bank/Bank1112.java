@@ -9,7 +9,7 @@ public class Bank1112 {
 		BankManage bm =new BankManage();
 		bm.runBankManage();
 		
-		System.out.println("프로그램 종료");
+		System.out.println("?��로그?�� 종료");
 		
 	}
 
