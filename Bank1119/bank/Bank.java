@@ -6,7 +6,7 @@ public class Bank {
 	public BankAccount account[] = new BankAccount[numOfUser];
 	public String bankName="";
 	public String nameLoggedin="";
-	public int id=0;//�궗�슜�옄留덈?�� ?����뿬�릺�?�� ?�좎??踰덊?��
+	public int id=0;//사용자마다 부여되는 고유번호
 	private String adminID="admin";
 	private String adminPW="1111";
 	private String exitName="exit";
@@ -22,7 +22,7 @@ public class Bank {
 	
 	@Override
 	public String toString() {
-		return "���뻾�씠?���? : "+bankName+", �쉶�썝�닔 : "+numOfUser;
+		return "은행이름 : "+bankName+", 회원수 : "+numOfUser;
 	}
 
 	public int searchIndex(String searchName) {
@@ -32,14 +32,14 @@ public class Bank {
 				index=i;
 				break;
 			}else {
-				index=-1;//�뾾�뒗 ?�꾩?��
+				index=-1;//없는 계정
 			}
 		}
 		return index;
 	}
 	public boolean isExist(int index) {
 		if(index==-1) {
-			System.out.println("議댁?���븯吏� �븡�뒗 �씠?��꾩엯�땲�떎");
+			System.out.println("존재하지 않는 이름입니다");
 			return false;
 		}else {
 			return true;
@@ -51,9 +51,9 @@ public class Bank {
 		for(int i=0;i<account.length;i++) {
 			tempArr[i]=account[i];
 		}
-		for(int i=0;i<id;i++) {//�궗�슜�옄紐낃?�� id �꽌濡� �떎?��멸컪�엫, id(?�좎??踰덊?��)以묐?��寃��궗
+		for(int i=0;i<id;i++) {//사용자명과 id 서로 다른값임, id(고유번호)중복검사
 			if(i==newdata.getId()) {
-				System.out.println("id媛� 以묐?���릺��?�뒿�땲�떎\n�떎?���? id?���? ?����뿬�빐二?���?�슂");
+				System.out.println("id가 중복되었습니다\n다른 id를 부여해주세요");
 				break;
 			}	
 		}
@@ -61,36 +61,36 @@ public class Bank {
 		account=tempArr;
 	}
 	public void addAccount() {
-		System.out.println("<<?�꾩?�� ?��붽�>>");
-		System.out.print("�씠?���? : ");
+		System.out.println("<<계정 추가>>");
+		System.out.print("이름 : ");
 		String newName=scanner.nextLine();
-		System.out.print("?��꾨�踰덊?�� : ");
+		System.out.print("비밀번호 : ");
 		String newPw=scanner.nextLine();
 		addAccountData(new BankAccount(newName,newPw,id,0));
 		id++;
-		System.out.println("?��붽��맖");
+		System.out.println("추가됨");
 	}
 	public void delAccount() {
 		numOfUser--;
 		BankAccount tempArr[]=new BankAccount[numOfUser];
-		System.out.println("<<?�꾩?�� �궘�젣>>");
-		System.out.print("�궘�젣�븷 �씠?���? : ");
+		System.out.println("<<계정 삭제>>");
+		System.out.print("삭제할 이름 : ");
 		String delName=scanner.nextLine();
 		int index=searchIndex(delName);
 		if(isExist(index)) {
-			for (int i = 0; i < index; i++) {//寃��깋�맂 index �젣�쇅�븳 �굹?��몄�媛�?�쓣 �깉 �엫�떆諛곗뿴��? ���옣
+			for (int i = 0; i < index; i++) {//검색된 index 제외한 나머지값을 새 임시배열에 저장
 				tempArr[i] = account[i];
 			}
 			for (int i = index; i < numOfUser; i++) {
 				tempArr[i] = account[i + 1];
 			}
 			account = tempArr;
-			System.out.println("�궘�젣�맖");
+			System.out.println("삭제됨");
 		}
 		
 	}
 	public void displayBal(String name) {
-		System.out.printf("%s�쓽 �옍�븸 : %d�썝%n",name,account[searchIndex(name)].getBalance());
+		System.out.printf("%s의 잔액 : %d원%n",name,account[searchIndex(name)].getBalance());
 	}
 	public void displayAll() {
 		for(int i=0;i<account.length;i++) {
@@ -99,8 +99,8 @@ public class Bank {
 		}
 	}
 	public void deposit(String name) {
-		System.out.println("<<�엯湲�>>");
-		System.out.print("�엯湲덊�? 湲덉�? �엯�젰 : ");
+		System.out.println("<<입금>>");
+		System.out.print("입금할 금액 입력 : ");
 		int dep = Integer.parseInt(scanner.nextLine());
 		int index=searchIndex(name);
 		if(isExist(index)) {
@@ -108,51 +108,51 @@ public class Bank {
 		}
 	}
 	public void withdraw(String name) {
-		System.out.println("<<?��?��?��>>");
-		System.out.print("?��?��?���븷 湲덉�? �엯�젰 : ");
+		System.out.println("<<출금>>");
+		System.out.print("출금할 금액 입력 : ");
 		int wd = Integer.parseInt(scanner.nextLine());
 		int index=searchIndex(name);
 		if(isExist(index)) {
 			if((account[index].getBalance()-wd)>0) {
 			account[index].setBalance(account[index].getBalance()-wd);
 			}else {
-				System.out.println("�옍�븸�씠 ?����?�깊�?�땲�떎");
+				System.out.println("잔액이 부족합니다");
 			}
 		}
 	}
 	
 	public void startMenu() {
-		System.out.printf("濡쒓?���씤:1, �쉶�썝媛��엯:2%n�엯�젰 : ");
+		System.out.printf("로그인:1, 회원가입:2%n입력 : ");
 		int loginInput = Integer.parseInt(scanner.nextLine());
 		switch (loginInput) {
 		case 1:
-			System.out.println("<<濡쒓?���씤>>");
+			System.out.println("<<로그인>>");
 			login();
 			break;
 		case 2:
-			System.out.println("<<�쉶�썝媛��엯>>");
+			System.out.println("<<회원가입>>");
 			addAccount();
 			break;
 		default:
-			System.out.println("�옒紐삳�? �엯�젰");
+			System.out.println("잘못된 입력");
 			break;
 		}
 	}
 	public void adminLogin() {
-		System.out.print("?��꾨�踰덊?�� �엯�젰 : ");
+		System.out.print("비밀번호 입력 : ");
 		String inputPassword = scanner.nextLine();
 		if (inputPassword.equals(adminPW)) {
-			System.out.println("?���由?�옄 濡쒓?���씤");
+			System.out.println("관리자 로그인");
 			isAdmin=true;
 			return;
 		} else {
-			System.out.println("�옒紐삳�? ?��꾨�踰덊?���엯�땲�떎");
+			System.out.println("잘못된 비밀번호입니다");
 			return;
 		}
 		
 	}
 	public void login() {
-		System.out.print("�궗�슜�옄紐� (exit濡� ?��?���?): ");
+		System.out.print("사용자명 (exit로 종료): ");
 		String inputUsername = scanner.nextLine();
 		if(inputUsername.equals(adminID)) {
 			adminLogin();
@@ -164,21 +164,21 @@ public class Bank {
 		}
 		int index=searchIndex(inputUsername);
 		if(isExist(index)) {
-			System.out.print("?��꾨�踰덊?�� �엯�젰 : ");
+			System.out.print("비밀번호 입력 : ");
 			String inputPassword = scanner.nextLine();
 			if(inputPassword.equals(account[index].getPw())) {
-				System.out.printf("%s�떂�쑝濡� 濡쒓?���씤%n", account[index].getName());
+				System.out.printf("%s님으로 로그인%n", account[index].getName());
 				nameLoggedin = account[index].getName();
 				return;
 			}else {
-				System.out.println("�옒紐삳�? ?��꾨�踰덊?��");
+				System.out.println("잘못된 비밀번호");
 				return;
 			}
 		}
 	}
 	public void mainMenu() {
-		System.out.println("1.�엯湲� 2.?��?��?�� 3.議고?�� 4.濡쒓?���븘�썐");
-		System.out.print("�썝�븯�뒗 硫붾?�� �엯�젰 : ");
+		System.out.println("1.입금 2.출금 3.조회 4.로그아웃");
+		System.out.print("원하는 메뉴 입력 : ");
 		int menuInput = Integer.parseInt(scanner.nextLine());
 		switch (menuInput) {
 		case 1:
@@ -188,21 +188,21 @@ public class Bank {
 			withdraw(nameLoggedin);
 			break;
 		case 3:
-			System.out.println("<<議고?��>>");
+			System.out.println("<<조회>>");
 			displayBal(nameLoggedin);
 			break;
 		case 4:
-			System.out.printf("%s 濡쒓?���븘�썐%n",nameLoggedin);
+			System.out.printf("%s 로그아웃%n",nameLoggedin);
 			nameLoggedin="";
 			return;
 		default:
-			System.out.println("�옒紐삳�? �엯�젰");
+			System.out.println("잘못된 입력");
 			break;
 		}
 	}
 	public void adminMenu() {
-		System.out.println("1.?�꾩?��?��붽� 2.?�꾩?���궘�젣 3.紐⑤뱺�궗�?���옄�젙蹂� 4.�씠?��꾩쑝濡� �젙蹂� 寃��깋 5.?��?���?");
-		System.out.print("�썝�븯�뒗 硫붾?�� �엯�젰 : ");
+		System.out.println("1.계정추가 2.계정삭제 3.모든사용자정보 4.이름으로 정보 검색 5.종료");
+		System.out.print("원하는 메뉴 입력 : ");
 		int menuInput = Integer.parseInt(scanner.nextLine());
 		switch (menuInput) {
 		case 1:
@@ -212,12 +212,12 @@ public class Bank {
 			delAccount();
 			break;
 		case 3:
-			System.out.println("<<�쟾泥� �젙蹂�>>");
+			System.out.println("<<전체 정보>>");
 			displayAll();
 			break;
 		case 4:
-			System.out.println("<<�씠?��꾩쑝濡� �젙蹂� 寃��깋>>");
-			System.out.print("寃��깋�븷 �씠?���? �엯�젰 : ");
+			System.out.println("<<이름으로 정보 검색>>");
+			System.out.print("검색할 이름 입력 : ");
 			String searchName=scanner.nextLine();
 			int index=searchIndex(searchName);
 			if(isExist(index)) {
@@ -225,17 +225,17 @@ public class Bank {
 			}
 			break;
 		case 5:
-			System.out.println("<<?���由?�옄 濡쒓?���븘�썐>>");
+			System.out.println("<<관리자 로그아웃>>");
 			isAdmin = false;
 			return;
 		default:
-			System.out.println("�옒紐삳�? �엯�젰");
+			System.out.println("잘못된 입력");
 			break;
 		}
 	}
 	
 	public void runBank() {
-		System.out.printf("%s���뻾 �엯�땲�떎%n",bankName);
+		System.out.printf("%s은행 입니다%n",bankName);
 		while(isExit==false) {
 			startMenu();
 			while(isAdmin) {
@@ -245,7 +245,7 @@ public class Bank {
 				mainMenu();
 			}
 		}
-		System.out.printf("%s���뻾�쓣 �씠�슜�빐 二쇱?���? 媛먯궗��?�땲�떎%n",bankName);
+		System.out.printf("%s은행을 이용해 주셔서 감사합니다%n",bankName);
 
 		
 	}

@@ -1,7 +1,5 @@
 package bank;
 
-import bank.Bank;
-
 public class BankManage {
 	java.util.Scanner scanner = new java.util.Scanner(System.in);
 	public int numOfBank=0;
@@ -14,20 +12,20 @@ public class BankManage {
 	public BankManage() {}
 	
 	public int searchBankIndex(String name) {
-		int index=-1;//bankNameê¸°ë³¸ê°’ê³¼ bankNowê¸°ë³¸ê°’ì´ ê°™ì•„?„œ
+		int index=-1;//bankNameê¸°ë³¸ê°’ê³¼ bankNowê¸°ë³¸ê°’ì´ ê°™ì•„ì„œ
 		for(int i=0;i<banks.length;i++) {
 			if(name.equals(banks[i].bankName)) {
 				index=i;
 				break;
 			}else {
-				index=-1;//?—†?Š” ?´ë¦?
+				index=-1;//ì—†ëŠ” ì´ë¦„
 			}
 		}
 		return index;
 	}
 	public boolean isExistBank(int index) {
 		if(index==-1) {
-			System.out.println("ì¡´ì¬?•˜ì§? ?•Š?Š” ???–‰?…?‹ˆ?‹¤");
+			System.out.println("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì€í–‰ì…ë‹ˆë‹¤");
 			return false;
 		}else {
 			return true;
@@ -43,28 +41,28 @@ public class BankManage {
 		banks=tempArr;
 	}
 	public void addBank() {
-		System.out.println("<<???–‰ ì¶”ê?>>");
-		System.out.print("?´ë¦? : ");
+		System.out.println("<<ì€í–‰ ì¶”ê°€>>");
+		System.out.print("ì´ë¦„ : ");
 		String newName=scanner.nextLine();
 		addBankData(new Bank(newName));
-		System.out.println("ì¶”ê??¨");
+		System.out.println("ì¶”ê°€ë¨");
 	}
 	public void delBank() {
 		numOfBank--;
 		Bank tempArr[]=new Bank[numOfBank];
-		System.out.println("<<???–‰ ?‚­? œ>>");
-		System.out.print("?‚­? œ?•  ?´ë¦? : ");
+		System.out.println("<<ì€í–‰ ì‚­ì œ>>");
+		System.out.print("ì‚­ì œí•  ì´ë¦„ : ");
 		String delName=scanner.nextLine();
 		int index=searchBankIndex(delName);
 		if(isExistBank(index)) {
-			for (int i = 0; i < index; i++) {//ê²??ƒ‰?œ index ? œ?™¸?•œ ?‚˜ë¨¸ì?ê°’ì„ ?ƒˆ ?„?‹œë°°ì—´?— ???¥
+			for (int i = 0; i < index; i++) {//ê²€ìƒ‰ëœ index ì œì™¸í•œ ë‚˜ë¨¸ì§€ê°’ì„ ìƒˆ ì„ì‹œë°°ì—´ì— ì €ì¥
 				tempArr[i] = banks[i];
 			}
 			for (int i = index; i < numOfBank; i++) {
 				tempArr[i] = banks[i + 1];
 			}
 			banks = tempArr;
-		System.out.println("?‚­? œ?¨");
+		System.out.println("ì‚­ì œë¨");
 		}
 	}
 	public void displayBank() {
@@ -74,8 +72,8 @@ public class BankManage {
 	}
 	
 	public void bankAdmin() {
-		System.out.println("ê´?ë¦¬ì ë©”ë‰´");
-		System.out.print("1.???–‰ì¶”ê? 2.???–‰?‚­? œ 3.???–‰? •ë³? 4.?´? „ ë©”ë‰´ë¡?\n>>");
+		System.out.println("ê´€ë¦¬ì ë©”ë‰´");
+		System.out.print("1.ì€í–‰ì¶”ê°€ 2.ì€í–‰ì‚­ì œ 3.ì€í–‰ì •ë³´ 4.ì´ì „ ë©”ë‰´ë¡œ\n>>");
 		int inputMenu=Integer.parseInt(scanner.nextLine());
 		switch (inputMenu) {
 		case 1:
@@ -91,12 +89,12 @@ public class BankManage {
 			isBankAdmin=false;
 			return;
 		default:
-			System.out.println("?˜ëª»ëœ ?…? ¥");
+			System.out.println("ì˜ëª»ëœ ì…ë ¥");
 			break;
 		}
 	}
 	public void bankLogin() {
-		System.out.print("?›?•˜?Š” ???–‰?„ ?…? ¥?•˜?„¸?š”(exitë¡? ì¢…ë£Œ) : ");
+		System.out.print("ì›í•˜ëŠ” ì€í–‰ì„ ì…ë ¥í•˜ì„¸ìš”(exitë¡œ ì¢…ë£Œ) : ");
 			String inputBankName=scanner.nextLine();
 			if(inputBankName.equals("exit")) {
 				isBankExit=true;
@@ -113,7 +111,7 @@ public class BankManage {
 				banks[index].isExit=false;
 				return;
 			}else {
-				System.out.println("???–‰?„ ì¶”ê??•˜ê² ìŠµ?‹ˆê¹??");
+				System.out.println("ì€í–‰ì„ ì¶”ê°€í•˜ê² ìŠµë‹ˆê¹Œ?");
 				System.out.print("1: yes 2: no >>");
 				int inputLogin=Integer.parseInt(scanner.nextLine());
 				if(inputLogin==1) {
@@ -132,7 +130,7 @@ public class BankManage {
 				bankAdmin();
 			}
 		}
-		System.out.println("???–‰ê´?ë¦¬ì¢…ë£?");
+		System.out.println("ì€í–‰ê´€ë¦¬ì¢…ë£Œ");
 	}
 	
 	

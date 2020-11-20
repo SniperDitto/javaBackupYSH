@@ -9,7 +9,7 @@ public class BankAccount {
 	
 	public BankAccount() {}
 	public BankAccount(String name, String pw, int id,int balance) {
-		super();//ë¶?ëª? ?´?˜?Š¤
+		super();//ë¶€ëª¨ í´ë˜ìŠ¤
 		this.name = name;
 		this.pw = pw;
 		this.id = id;
@@ -44,7 +44,7 @@ public class BankAccount {
 	}
 	@Override
 	public String toString() {
-		return "?´ë¦? : " + name + "\në¹„ë?ë²ˆí˜¸ : " + pw + "\nid : " + id + "\n?”?•¡ : " + balance;
+		return "ì´ë¦„ : " + name + "\në¹„ë°€ë²ˆí˜¸ : " + pw + "\nid : " + id + "\nì”ì•¡ : " + balance;
 	}
 
 }

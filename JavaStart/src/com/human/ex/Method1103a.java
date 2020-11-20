@@ -1,6 +1,6 @@
 package com.human.ex;
 
-class Student{
+class Student1{
 	public static int count=0;//호출된횟수
 	
 	private String name="홍길동";//캡슐화, 은닉화 private
@@ -8,7 +8,7 @@ class Student{
 	private int math=50;
 	private int eng=50;
 	
-	public Student() {//호출
+	public Student1() {//호출
 		this("홍길동", 11, 22, 33);//호출내용
 		
 	}
@@ -22,12 +22,12 @@ class Student{
 	public String toString() {
 		return "이름 : "+name+"\n"+" 국어 : "+kor+" 수학 : "+math+" 영어 : "+eng+" 총점 : "+total()+" 평균 : "+avg();
 	}
-	public Student(String name,int kor,int math,int eng) {
+	public Student1(String name,int kor,int math,int eng) {
 		this.name=name;
 		this.kor=kor;
 		this.math=math;
 		this.eng=eng;
-		Student.count++;//호출내용이 호출시 카운트증가
+		Student1.count++;//호출내용이 호출시 카운트증가
 	}
 	@Override
 	public int hashCode() {//이름으로 판별
@@ -44,7 +44,7 @@ class Student{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Student other = (Student) obj;
+		Student1 other = (Student1) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -112,15 +112,15 @@ public class Method1103a {
 
 	
 	public static void main(String[] args) {
-		Student st1=new Student("홍",55,66,77);
+		Student1 st1=new Student1("홍",55,66,77);
 		System.out.println(st1);
 		
-		Student st2=new Student("ㅁ",77,66,55);
+		Student1 st2=new Student1("ㅁ",77,66,55);
 		st2.setKor(123);
 		st2.setName("홍길남");
 		System.out.println(st2);
 		
-		System.out.println(Student.count);
+		System.out.println(Student1.count);
 		
 	}
 	
