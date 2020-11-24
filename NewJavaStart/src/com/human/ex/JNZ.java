@@ -24,6 +24,11 @@ class Zet implements JonNum{
 		System.out.println("지할말만 하는 잿");
 	}
 	
+	public void ddongZet(int num) {
+		System.out.println("잿이 "+num+"번 똥잿했습니다.");
+	}
+	
+	
 }
 
 public class JNZ {
@@ -32,6 +37,7 @@ public class JNZ {
 		Z.zamsoo();
 		Z.ssipgi();
 		Z.onlyMyOpinion();
+		
 		
 
 	}

@@ -3,7 +3,7 @@ package com.human.dto;
 public class Rectangle {
 	private double width=100;
 	private double height=100;
-	private static Rectangle instance=new Rectangle();
+//	private static Rectangle instance=new Rectangle();
 	
 	public double area() {
 		return width*height;
@@ -28,17 +28,17 @@ public class Rectangle {
 		if (this.height<0)this.height=0;
 		
 	}
-	private Rectangle() {}
-//	private Rectangle(double width, double height) {
-//		super();
-//		this.width = width;
-//		this.height = height;
-//		if (this.width<0)this.width=0;
-//		if (this.height<0)this.height=0;
-//	}
-	public static Rectangle getInstance() {
-		return instance;
+	public Rectangle() {}
+	public Rectangle(double width, double height) {
+		super();
+		this.width = width;
+		this.height = height;
+		if (this.width<0)this.width=0;
+		if (this.height<0)this.height=0;
 	}
+//	public static Rectangle getInstance() {
+//		return instance;
+//	}
 
 	@Override
 	public String toString() {
