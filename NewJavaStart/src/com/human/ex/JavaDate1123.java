@@ -1,5 +1,6 @@
 package com.human.ex;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -31,11 +32,10 @@ public class JavaDate1123 {
 		Date date2=new Date(1000);
 		dateDifference=date2.getTime()-date.getTime();
 		
-		
-		
-		
-		
-		
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy년MM:dd hh:mm:ss");
+		System.out.println(simple.format(date));
+		System.out.println(simple.format(date2));
+		System.out.println(dateDifference);
 		
 	}
 

@@ -1,6 +1,6 @@
 package com.human.dto;
 
-public class Rectangle {
+public class Rectangle implements Comparable<Rectangle>{
 	private double width=100;
 	private double height=100;
 //	private static Rectangle instance=new Rectangle();
@@ -70,7 +70,30 @@ public class Rectangle {
 			return false;
 		if (Double.doubleToLongBits(width) != Double.doubleToLongBits(other.width))
 			return false;
+//		if(this.width*this.height==other.width*other.height) {
+//			return true;
+//		}else {
+//			return false;
+//		}
 		return true;
+	}
+
+//	compareTo : Comparable 인터페이스 (매개변수 1개와 자신 비교)
+//	compare : Comparator 인터페이스 (매개변수 2개끼리 비교)
+
+	@Override
+	public int compareTo(Rectangle other) {//넓이로 비교
+		//-1:매개변수가 더 큼 , 0:같음, 1:자신이 더 큼
+		int val = 0;
+		if(this.area()==other.area()) {
+			val=0;
+		}else if(this.area()>other.area()) {
+			val=1;
+		}else if(this.area()<other.area()) {
+			val=-1;
+		}
+			
+		return val;
 	}
 	
 	
