@@ -52,7 +52,7 @@ public class BankCol {
 	}
 
 	public int searchIndex(String searchName) {
-		int index=-1;
+		int index=0;
 		for(int i=0;i<account.size();i++) {
 			if(searchName.equals(account.get(i).getName())) {
 				index=i;

@@ -4,7 +4,7 @@ import com.human.dto.Man;
 import com.human.dto.Shopping;
 
 
-public class JavaStart1110 {
+public class Single1110 {
 
 	public static void main(String[] args) {
 		System.out.println("1---------------------------");
