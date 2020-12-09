@@ -10,7 +10,7 @@ public class School {
 	private ArrayList<Student> students = new ArrayList<Student>();
 	private ArrayList<Subject> subjects = new ArrayList<Subject>();
 	private static School instance=new School();
-	private int numStudent;
+	private int numStudent=students.size();
 //---------------------------------------------	
 	private School() {}
 	public static School getInstance() {
@@ -40,7 +40,7 @@ public class School {
 		StudentID sId = new StudentID();
 		sId.inputStudentID();
 		sId.makeStudentID();
-		Student tempStudent = new Student(sId.getStudentID(),inputName,sId.getMajor());
+		Student tempStudent = new Student(sId.getStudentID(),inputName,sId.getMajorID());
 		students.add(tempStudent);
 		
 	}
@@ -54,9 +54,21 @@ public class School {
 		subjects.remove(s);
 	}
 	
+	public void showStudents() {
+		System.out.println("<학생 목록>");
+		for(Student s:students) {
+			System.out.println(s.toString());
+			System.out.println("----------------");
+		}
+	}
 	
-	
-	
+	public void showSubjects() {
+		System.out.println("<강의 목록>");
+		for(Subject s:subjects) {
+			System.out.println(s.toString());
+			System.out.println("----------------");
+		}
+	}
 	
 	
 }

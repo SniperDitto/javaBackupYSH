@@ -2,6 +2,8 @@ package studentgrade;
 
 import java.util.HashMap;
 
+import define.Major;
+
 public class Student {
 	private String studentID;//학번(입학년도+등록순서+전공코드)
 	private String studentName;//이름
@@ -35,7 +37,7 @@ public class Student {
 //--------------------------------------------------	
 	@Override
 	public String toString() {
-		return "Student [studentID=" + studentID + ", studentName=" + studentName + ", majorID=" + majorID + "]";
+		return "학번 : " + studentID + "\n이름 : " + studentName + "\n전공 : " + majorIDtoKorean(majorID) + "]";
 	}
 	
 	public boolean isExistSubject(Subject sub) {
@@ -63,4 +65,24 @@ public class Student {
 			System.out.println("존재하지 않는 과목");
 		}
 	}
+	
+	//전공코드 1,2 등을 학과명으로 표시
+	public String majorIDtoKorean(String majorID) {
+		for(Major m:Major.values()) {
+			if(m.getValue()==Integer.parseInt(majorID)) {
+				return m.toString();
+			}
+		}
+		return majorID;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -19,15 +19,17 @@ public enum Major{//전공
 		return value;
 	}
 
+	
+	//전공 입력받을때 메뉴 만들기(1:컴공 2:국문)
 	public String majorString() {
-		String returnString="";
+		StringBuilder returnString=new StringBuilder("");
 		for(Major m:Major.values()) {
-			returnString.concat(Integer.toString(m.getValue()));
-			returnString.concat(" ");
-			returnString.concat(m.toString());
-			returnString.concat(" ");
+			returnString.append(Integer.toString(m.getValue()));
+			returnString.append(":");
+			returnString.append(m.toString());
+			returnString.append(" ");
 		}
-		return returnString;
+		return returnString.toString();
 	}
 
 

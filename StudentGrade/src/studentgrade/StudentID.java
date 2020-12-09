@@ -6,14 +6,14 @@ import define.Major;
 public class StudentID {
 	Scanner scanner = new Scanner(System.in);
 	private String Year;//입학년도
-	private String major;//전공
+	private String majorID;//전공코드
 	private String StudentID;//학번
 //------------------------------------------	
 	public StudentID() {}
 	public StudentID(String year, String major) {
 		super();
 		this.Year = year;
-		this.major = major;
+		this.majorID = major;
 		makeStudentID();
 	}
 //------------------------------------------------
@@ -23,11 +23,11 @@ public class StudentID {
 	public void setYear(String year) {
 		this.Year = year;
 	}
-	public String getMajor() {
-		return major;
+	public String getMajorID() {
+		return majorID;
 	}
-	public void setMajor(String major) {
-		this.major = major;
+	public void setMajorID(String majorID) {
+		this.majorID = majorID;
 	}
 	
 	public String getStudentID() {
@@ -41,21 +41,32 @@ public class StudentID {
 		String maj=m.majorString();
 		System.out.printf("추가할 학생 전공(%s) : ",maj);
 		int inputMajor=Integer.parseInt(scanner.nextLine());
-		setYear(inputYear);
-		setMajor(String.valueOf(inputMajor));
+		if(isExistMajor(inputMajor)) {
+			setYear(inputYear);
+			setMajorID(String.valueOf(inputMajor));
+		}else {
+			System.out.println("존재하지 않는 전공");
+		}
+		
 	}
 	
-	public void isExistMajor() {
-//		for(int i:)
+	public boolean isExistMajor(int maj) {
+		for(Major m:Major.values()) {
+			if(m.getValue()==maj) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void makeStudentID() {
 		School s = School.getInstance();
-		String tempStudentID=Year.concat(major);
+		String tempStudentID=Year.concat(majorID);
 		tempStudentID=tempStudentID.concat(Integer.toString(s.getNumStudent()));
 		this.StudentID=tempStudentID;
 	}
 	
+
 //-----------------------------------------------	
 	
 	@Override
