@@ -1,8 +1,6 @@
 package ex;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import util.JDBCsingle;
 
 public class JDBCexStatementQ {
@@ -33,6 +31,21 @@ public class JDBCexStatementQ {
 		System.out.print("검색하려는 멤버의 번호를 입력하세요 : ");
 		int inputNO=JDBCsingle.inputInt();
 		sql=String.format("select * from member where mNo=%d", inputNO);
+		JDBCsingle.statementUpdate(sql);
+		rs= JDBCsingle.statementQuery(select);
+		JDBCsingle.printData(rs);
+		
+		System.out.println("데이터 추가하기");
+		System.out.print("추가할 멤버 번호 : ");
+		int inputmNo=JDBCsingle.inputInt();
+		System.out.print("추가할 멤버 전화번호 : ");
+		String inputhp=JDBCsingle.inputString();
+		System.out.print("추가할 멤버 주소 : ");
+		String inputaddr=JDBCsingle.inputString();
+		System.out.print("추가할 멤버 이름 : ");
+		String inputmName=JDBCsingle.inputString();
+		sql="insert into member values(%d,'%s','%s','%s')";
+		sql=String.format(sql, inputmNo,inputhp,inputaddr,inputmName);
 		JDBCsingle.statementUpdate(sql);
 		rs= JDBCsingle.statementQuery(select);
 		JDBCsingle.printData(rs);

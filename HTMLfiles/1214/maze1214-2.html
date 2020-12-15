@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            border: 1px solid black;
+            width: 500px;
+            height: 500px;
+        }
+        tr,td{
+            border: 1px solid black;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+        }
+        #player{
+            width: 20px;
+            height: 20px;
+            transform: rotate(0deg);
+        }
+    </style>
+    <script>
+        //0:길 1:벽 2:출구 3:플레이어
+        var map=[//------>y
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],// |
+        [1,0,0,0,0,0,0,0,0,0,0,1,1,0,2],// |
+        [1,0,1,1,1,1,1,1,1,1,0,0,1,0,1],// |
+        [1,0,1,0,0,0,0,0,0,1,1,0,1,0,1],// |
+        [1,0,1,0,1,1,1,1,0,1,0,0,1,0,1],// V
+        [1,0,1,0,1,1,0,0,0,1,0,1,1,0,1],// x
+        [1,0,1,0,1,0,0,1,0,1,0,0,1,0,1],
+        [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+        [1,0,0,0,1,0,0,0,1,0,0,0,1,0,1],
+        [1,1,1,1,1,0,1,0,1,1,0,1,1,0,1],
+        [1,0,0,0,1,0,1,0,1,1,0,0,1,0,1],
+        [1,0,1,0,1,0,1,0,0,1,1,0,1,0,1],
+        [1,0,1,0,1,1,1,1,0,1,1,0,1,0,1],
+        [1,3,1,0,0,0,0,0,0,1,0,0,0,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        var boardY=map[0].length;
+        var boardX=map.length;
+        
+        function Board(){
+            var str="";
+            str+="<table>";
+            for(var x=0;x<boardX;x++){
+                str+="<tr>";
+                for(var y=0;y<boardY;y++){
+                    str+="<td id=x"+x+"y"+y+"></td>";
+                }
+                str+="</tr>";
+            }
+            str+="</table>";
+            return str;
+        }
+        function changeColor(id,color){
+            document.getElementById(id).style.backgroundColor=color;
+        }
+        function setBoard(){
+            for(var x=0;x<boardX;x++){
+                for(var y=0;y<boardY;y++){
+                    switch(map[x][y]){
+                        case 0://통로(흰색)
+                            changeColor("x"+x+"y"+y,"white");
+                            break;
+                        case 1://벽(빨강)
+                            changeColor("x"+x+"y"+y,"red");
+                            break;
+                        case 2://출구(노랑)
+                            changeColor("x"+x+"y"+y,"yellow");
+                            break;
+                        case 3://플레이어(이미지)
+                            document.getElementById("x"+x+"y"+y).innerHTML="<img src='tri.png' id='player'>"
+                            break;
+                    }
+                    
+                }
+            }
+        }
+        var startX=13;
+        var startY=1;
+        var currentX=13;
+        var currentY=1;
+        var direction=[37,38,39,40];//37좌 38상 39우 40하
+        var faceDirection=1;
+        var track=[];//지나간 경로 좌표 저장
+        
+        function rightSideWall(){
+            //현재위치에서 오른쪽에 벽이 있는가
+            switch(direction[faceDirection]){
+                case 37://왼쪽(-y)
+                    return map[currentX-1][currentY];
+                    break;
+                case 38://위쪽(-x)
+                    return map[currentX][currentY+1];    
+                    break;
+                case 39://오른쪽(+y)
+                    return map[currentX+1][currentY];
+                    break;
+                case 40://아래쪽(+x)
+                    return map[currentX][currentY-1];    
+                    break;
+            }
+        }
+        function rotatePlayer(){//현재 방향에서 오른쪽으로 회전
+            //faceDirection 조정
+            faceDirection++;
+            if(3<faceDirection){
+                faceDirection=faceDirection%4;
+            }
+            //style수정
+            var p=document.getElementById("player");
+            player.style.transform=rotate((90*(faceDirection-1))+'deg');
+        }
+        function identifyRoad(){
+            //현재 위치의 한칸 앞이 길인지 아닌지
+            switch(direction[faceDirection]){
+                case 37://왼쪽
+                    return map[currentX][currentY-1];
+                    break;
+                case 38://위쪽
+                    return map[currentX-1][currentY];
+                    break;
+                case 39://오른쪽
+                    return map[currentX][currentY+1];
+                    break;
+                case 40://아래쪽
+                    return map[currentX+1][currentY];
+                    break;
+            }
+            return 0;//0:길 1:벽 2:출구
+        }
+        function moveForward(){
+            switch(direction[faceDirection]){
+                case 37://왼쪽(-y)
+                    currentY--;
+                    break;
+                case 38://위쪽(-x)
+                    currentX--;
+                    break;
+                case 39://오른쪽(+y)
+                    currentY++;
+                    break;
+                case 40://아래쪽(+x)
+                    currentX++;
+                    break;
+            }
+        }
+        function addTrack(){
+            var location = document.getElementById("player").parentElement.id;
+            track.push(location);
+        }
+        function escapeMaze(){
+            addTrack();
+            if(identifyRoad()==0 && rightSideWall()==1){
+                moveForward();
+            }else{
+                rotatePlayer(faceDirection++);
+            }
+        }
+        var drawInterval=setInterval(function(){
+            escapeMaze();
+
+
+        },200);
+        window.onload=function(){
+            document.getElementById("board").innerHTML=Board();
+            setBoard();
+        }
+    </script>
+</head>
+<body>
+    <div id="board"></div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+
+        var d=[];
+        d[5]=1;
+        var d=[1,2,2.3,function(){},{},[1,2,3]];
+        d[5][1]=12;
+
+        a=new Array();
+        a[0]=new Array();
+        a[1]=new Array();
+        a[0][1];
+
+        function login(){
+            var loginform=document.loginform;
+            var user=loginform.userID.value;
+            var password=loginform.password.value;
+
+            if(userID||!password){
+                alert("아이디와 비밀번호를 모두 입력하세요")
+            }else{
+                loginform.submit();
+            }
+        }
+        
+        window.onload=function(){
+            document.getElementsByClassName("")[0];
+            document.getElementsByTagName("div")[0].onclick;
+        }
+    </script>
+</head>
+<body>
+    <form name="loginform" action="" method="POST">
+        아이디:<input type="text" name="userID"><br>
+        비밀번호:<input type="password" name="password"><br>
+        <input type="hidden" name="logintype" value="admin">
+        <input type="button" onclick="login" value="로그인">
+    </form>
+</body>
+</html>

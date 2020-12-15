@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        function f1(){
+            //alert(window.document.myForm.text1.value);
+            //alert(window.document.getElementById("text1").value);
+            //alert(window.document.getElementsByTagName("input")[0].value);
+            alert(window.document.getElementsByClassName[0].value);
+        }
+        function f2(){
+            var u1=document.getElementById("u1")
+            u1.getElementsByTagName("li")[2].innerHTML="java";
+        }
+        function f3(){
+            var u2=document.getElementById("u2")
+            u2.getElementsByTagName("li")[2].innerHTML="math2";
+        }
+        function f4(){
+            var myDiv=document.getElementsByTagName("div")[0];
+            alert("자식 노드들 : "+myDiv.childNodes[0]);
+            alert("첫번째 자식 : "+myDiv.firstChild);
+            alert("마지막 자식 : "+myDiv.lastChild);
+            alert("부모 노드 : "+myDiv.parentNode);
+            alert("다음 형제 노드 : "+myDiv.firstChild.nextSibling);
+            alert("이전 형제 노드 : "+myDiv.lastChild.previousSibling);
+        }
+    </script>
+</head>
+<body>
+    <form name="myForm">
+        <input type="text" id="text1" name="text1">
+        <button type="button" onclick="f1()">클릭1</button>
+        <ul id="u1">
+            <li>java</li>
+            <li>db</li>
+            <li>javascript</li>
+            <li>java</li>
+        </ul>
+        <button type="button" onclick="f2()">클릭2</button>
+        <ul id="u2">
+            <li>eng</li>
+            <li>kor</li>
+            <li>math</li>
+        </ul>
+        <button type="button" onclick="f3()">클릭3</button>
+        <div>
+            <p>과일리스트</p>
+            <ul>
+                <li>사과</li>
+                <li>배</li>
+                <li>오렌지</li>
+            </ul>
+        </div>
+        <button type="button" onclick="f4()">클릭4</button>
+    </form>
+</body>
+</html>

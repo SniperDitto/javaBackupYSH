@@ -117,7 +117,7 @@ public class JDBCsingle {
 	
 	public static Date inputDate() {
 		Date d=null;
-		System.out.println("날짜 입력(yyyy-MM-dd hh:mm:ss : ");
+		System.out.println("날짜 입력(yyyy-mm-dd hh24:mi:ss : ");
 		SimpleDateFormat transFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String input = sc.nextLine();
 		try {

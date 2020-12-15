@@ -1,14 +1,16 @@
-drop table member;
-create table member(
-    mNo number,
-    hp nvarchar2(100),
-    addr nvarchar2(100),
-    mName nvarchar2(100)
-)
-insert into member values(1111,'1111','asd','asdf');
-insert into member values(2222,'2222','asd2','asdf2');
-insert into member values(3333,'3333','asd3','asdf3');
-insert into member values(4444,'4444','asd4','asdf4');
+
+drop table human;
+create table human(
+    name varchar2(50),
+    height number(4,1),
+    age number(3),
+    birthday date);
+    
+insert into human values ('홍길동',  152.1,30, to_date('2000:02:03 00:00:00', 'YYYY:MM:DD HH24:MI:SS'));
+insert into human values ('홍길남',  156.4,31, to_date('2001:02:03 00:00:00', 'YYYY:MM:DD HH24:MI:SS'));
+insert into human values ('홍길영',  173.5,30, to_date('2000:12:21 00:00:00', 'YYYY:MM:DD HH24:MI:SS'));
+insert into human values ('홍길아',  143.2,21, to_date('2011:04:17 00:00:00', 'YYYY:MM:DD HH24:MI:SS'));
 commit;
 
-select * from  member;
+select * from human;
+desc human;
