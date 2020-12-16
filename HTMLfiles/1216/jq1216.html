@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src='..\JS\jquery-3.5.1.js'>
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#hide").click(function(){
+                $("p").hide();
+            });
+            $("#show").click(function(){
+                $("p").show();
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>If you click on the "Hide" button, I will disappear.</p>
+</body>
+</html>
