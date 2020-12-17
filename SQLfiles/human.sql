@@ -14,3 +14,12 @@ commit;
 
 select * from human;
 desc human;
+
+drop table account;
+create table account(
+    accID number(10),
+    name varchar2(50),
+    pw varchar2(50),
+    balance number(10));
+    
+commit;
