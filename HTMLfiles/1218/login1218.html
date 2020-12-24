@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, 
+    initial scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#my_form").submit(
+                function(e){
+                    var name=$("#name").val();
+                    if(name==""){
+                        alert("이름을 입력하세요");
+                        e.preventDefault();//기본 이벤트 방지
+                    }else{
+                        alert(name);
+                    }
+                }
+            )
+            $("#all").change(
+                function(){
+                    if(this.checked){
+                        //$("div>input").prop("checked",true);
+                        $("#myC").children("input").prop("checked",true);
+                    }else{
+                        //$("div>input").prop("checked",false);
+                        $("#myC").children("input").prop("checked",false);
+                    }
+                }
+            )
+        })
+    </script>
+</head>
+<body>
+    <form id="my_form" action="https://www.naver.com/">
+        <input type="text" name="name" id="name">
+        <input type="submit" value="제출"/>
+    </form>
+    <br>
+    <input type="checkbox" name="all" id="all"><label>all</label>
+    <div id="myC">
+        <input type="checkbox" name="a" id="a"><label>a</label>
+        <input type="checkbox" name="b" id="b"><label>b</label>
+        <input type="checkbox" name="c" id="c"><label>c</label>
+    </div>
+
+</body>
+</html>

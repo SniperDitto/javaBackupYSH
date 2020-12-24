@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>over</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #box li{
+            position: relative;
+            left: 100px;
+            top: 100px;
+            width: 115px;
+            height: 94px;
+            background-color: yellow;
+            color: brown;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        #box li>div{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 115px;
+            height: 94px;
+            background-color:brown;
+            color: yellow;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#box>ul>li").hover(
+                function(){
+                    $(this).find("div").stop().animate({
+                        left:"+100px"
+                    },400);
+                },
+                function(){
+                    $(this).find("div").stop().animate({
+                        left:"0px"
+                    },400);
+                }
+            )
+        })
+    </script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li>
+                <img src="images\menu1_over.jpg">
+                <div>
+                    <img src="images\menu1.jpg">
+                </div>
+            </li>
+            <li>
+                <img src="images\menu2_over.jpg">
+                <div>
+                    <img src="images\menu2.jpg">
+                </div>
+            </li>
+            <li>
+                <img src="images\menu3_over.jpg">
+                <div>
+                    <img src="images\menu3.jpg">
+                </div>           
+            </li>
+            <li>
+                <img src="images\menu4_over.jpg">
+                <div>
+                    <img src="images\menu4.jpg">
+                </div>            
+            </li>
+            <li>
+                <img src="images\menu5_over.jpg">
+                <div>
+                    <img src="images\menu5.jpg">
+                </div>            
+            </li>
+        </ul>
+    </div>
+    
+    <!----------------->
+
+</body>
+</html>

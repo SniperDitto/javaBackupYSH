@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container>div{
+            overflow: hidden;
+            outline: 1px solid black;
+            float: left;
+            width: 100px;
+            height: 100px;
+            padding: 0px;
+            background-color: aquamarine;
+        }
+        #container>div>div>div{
+            outline: 1px solid black;
+            float: left;
+            width: 100px;
+            height: 100px;
+            padding: 0px;
+            background-color: skyblue;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var menuNOW="menu1";
+        function nowMenuFunction(){
+            $("#container>div").each(
+                function(){
+                    if(menuNOW==$(this).attr("id")){
+                        $(this).stop().animate({width:"200px"},300);
+                    }else{
+                        $(this).stop().animate({width:"100px"},300);
+                    }
+                }
+            );
+        }
+        $(function(){
+            nowMenuFunction();
+            $(".div01").mouseover(function(){
+                $(".div01").stop().animate({width:"100px"},300);
+                $(this).stop().animate({width:"200px"},300);
+            })
+            $("#container").mouseleave(function(){
+                setTimeout( nowMenuFunction,2000)
+                //nowMenuFunction();
+            })
+            $(".div01").click(function(){
+                menuNOW=$(this).attr("id");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="menu1" class="div01">
+            <div style="width:200px">
+            <div>
+                <img src="1.jpg">
+            </div>
+            <div>2</div>
+            </div>
+        </div>
+        <div id="menu2" class="div01">
+            <div style="width:200px">
+                <div>
+                    <img src="2.jpg">
+                </div>
+                <div>4</div>
+                </div>
+        </div>
+        <div id="menu3" class="div01">
+            <div style="width:200px">
+                <div>
+                    <img src="3.jpg">
+                </div>
+                <div>6</div>
+                </div>
+        </div>
+        <div id="menu4" class="div01">
+            <div style="width:200px">
+                <div>
+                    <img src="4.jpg">
+                </div>
+                <div>8</div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, 
+    initial scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            display: inline-block;
+            position: relative;
+            z-index: 5;
+        }
+        li{
+            float: left;
+            list-style: none;
+            width: 120px;
+        }
+        li a{
+            display: block;
+            padding: 15px 10px;
+            text-align: center;
+            font: bold 14px "맑은 고딕";
+            text-decoration: none;
+            background-color: orange;
+            color: rebeccapurple;
+        }
+        div>div{
+            display: none;
+        }
+        img{
+            width: 500px;
+            height: 1000px;
+        }
+        #menubar{
+            height: 50px;
+        }
+        #contents{
+            position: relative;
+            z-index: 2;
+        }
+        #clear{
+            clear: both;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("ul>li>div").hover(function(){
+                $(this).find("div").stop().slideDown();
+            },function(){
+                $(this).find("div").stop().slideUp();
+            })
+
+            $("ul a").hover(function(){
+                $(this).css("background-color","rgb(211, 142, 13)");
+            },function(){
+                $(this).css("background-color","orange");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="menubar">
+        <ul>
+            <li>
+                <div>
+                    <a>메뉴1</a>
+                    <div>
+                        <a>su메뉴1</a>
+                        <a>su메뉴2</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a>메뉴2</a>
+                    <div>
+                        <a>su메뉴1</a>
+                        <a>su메뉴2</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a>메뉴3</a>
+                    <div>
+                        <a>su메뉴1</a>
+                        <a>su메뉴2</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a>메뉴4</a>
+                    <div>
+                        <a>su메뉴1</a>
+                        <a>su메뉴2</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a>메뉴5</a>
+                    <div>
+                        <a>su메뉴1</a>
+                        <a>su메뉴2</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="clear"></div>
+    <div id="contents">
+        <img src="KakaoTalk_20200903_161737564.jpg">
+    </div>
+</body>
+</html>

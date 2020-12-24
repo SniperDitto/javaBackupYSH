@@ -1,0 +1,142 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: aliceblue;
+    margin: 0px;
+    
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(59, 59, 59);
+    padding: 8px 12px;
+    font-family: 'JetBrains Mono', monospace;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.navbar_logo{
+    font-size: 24px;
+    color: white;
+}
+.navbar_logo i{
+    font-size: 24px;
+    color: brown;
+}
+.navbar_menu{
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    height: 65px;
+}
+.navbar_menu li{
+    padding: 8px 12px;
+    width:100px;
+}
+.navbar_menu a:hover{
+    color: brown;
+}
+.navbar_menu li>div{
+    display:none;
+}
+.navbar_menu li:hover{
+    color: rgb(196, 60, 60);
+}
+.navbar_menu li>a:hover{
+    padding: 5px;
+    color: brown;
+}
+.navbar_links{
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+}
+.navbar_links li{
+    padding: 8px 8px;
+}
+.navbar_toggleBtn{
+    display: none;
+}
+
+
+@media screen and (max-width:768px){
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+    .navbar_menu{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    .navbar_menu li{
+        width: 100%;
+        text-align: center;
+    }
+    .navbar_links{
+        display: none;
+        justify-content: center;
+        width: 100%;
+    }
+    .navbar_toggleBtn{
+        display: block;
+        position: absolute;
+        right: 32px;
+        font-size: 24px;
+        color: brown;
+    }
+    .navbar_menu li:hover{
+        color: brown;
+
+    }
+    .navbar_menu li>div>a{
+        display:block;
+    }
+    
+
+}
+.navbar_menu.active, .navbar_links.active{
+    display: flex;
+}
+
+/*-------------------------------------------*/
+.container .content{
+    padding: 5px;
+    background-color: rgb(202, 202, 202);
+    border: 1px solid black;
+    border-bottom: 0;
+}
+.navbar_menu>li>div>a{
+    padding: 1px 5px;
+}
+.navbar_menu>li>div>a:hover{
+    color: yellow;
+
+}
+@media screen and (min-width:768px){
+    .container .content{
+        width: 32%;
+        float: left;
+    }
+    /* .navbar_menu>li>div>a{
+        display: block;
+    } */
+
+}
+#clear{
+    clear: both;
+}
+
+.footer{
+    width: 100%;
+    background-color:rgb(59, 59, 59);
+    color: white;
+    height: 80px;
+    padding: 5px 200px;
+}
