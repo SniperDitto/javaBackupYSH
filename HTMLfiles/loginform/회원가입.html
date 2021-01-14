@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>loginform</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/f77b3b8b77.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="script.js" defer></script>
+    
+</head>
+<body>
+    <header class="header">
+        <h1>asdf유승화asdf</h1>
+        <p>회원가입</p>
+    </header>
+    <form class="signup" name="signup" action="" method="post">
+        <div>
+            <label for="name">아이디</label>
+            <input id="name" name="name" type="text"/>
+        </div>
+        <div>
+            <label for="email">이메일</label>
+            <input id="email" type="email" placeholder="asdf@example.com"/>
+        </div>
+        <div class="birthday">
+            <label for="month">생일</label>
+            <select name="month">
+                <option value="january">1월</option>
+                <option value="february">2월</option>
+                <option value="march">3월</option>
+                <option value="april">4월</option>
+                <option value="may">5월</option>
+                <option value="june">6월</option>
+                <option value="july">7월</option>
+                <option value="august">8월</option>
+                <option value="september">9월</option>
+                <option value="october">10월</option>
+                <option value="november">11월</option>
+                <option value="december">12월</option>
+            </select>
+            <input type="text" id="date" placeholder="날짜(숫자)">
+        </div>
+        <div>
+            <fieldset class="gender">
+                <input id="gender-type-1" name="gender" type="radio" value="Male"/>
+                <label for="gender-type-1" class="radio-label">남</label>
+                <input id="gender-type-2" name="gender" type="radio" value="Female"/>
+                <label for="gender-type-2" class="radio-label">여</label>
+                <input id="gender-type-3" name="gender" type="radio" value="None"/>
+                <label for="gender-type-3" class="radio-label">비공개</label>
+            </fieldset>
+        </div>
+        <div>
+            <button>Sign Up</button>
+        </div>
+    </form>
+</body>
+</html>

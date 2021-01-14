@@ -10,9 +10,11 @@
 		<item value="https://github.com/SniperDitto/javaBackupYSH.git"/>
 	</list>
 	<list key="CommitDialog.authorValues">
+		<item value="baesu &lt;baesu@118.42.160.200&gt;"/>
 		<item value="SniperDitto &lt;baesuk105@naver.com&gt;"/>
 	</list>
 	<list key="CommitDialog.committerValues">
+		<item value="baesu &lt;baesu@118.42.160.200&gt;"/>
 		<item value="SniperDitto &lt;baesuk105@naver.com&gt;"/>
 	</list>
 	<section name="GitImportWizard">

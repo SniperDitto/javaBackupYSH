@@ -1,0 +1,75 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: black;
+}
+#title{
+  color: white;
+  background-color: rgb(63, 63, 63);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#title i{
+  margin: 10px;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap; 
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tabs label {
+  width:33.333%;
+  order: 1;
+  display: block;
+  padding:10px 0px;
+  text-align:center;
+  cursor: pointer;
+  background: #838487;
+  font-weight: bold;
+  transition: background ease 0.2s;
+}
+  
+  /*박스배경*/
+.tabs .tab {
+  order: 99;
+  flex-grow: 1;
+  width: 100%;
+  display: none;
+  padding: 1rem;
+  background: #92B6D5;
+}
+.tabs .tab h3{
+  text-align: center;
+}
+.tabs input[type="radio"] {
+  display: none;
+}
+
+  /*탭 눌렀을때 컬러*/
+.tabs input[type="radio"]:checked + label {
+  background: #92B6D5;
+}
+.tabs input[type="radio"]:checked + label + .tab {
+  display: block;
+}
+#javatab,#htmltab,#jstab{
+  text-align: center;
+  margin-top: 30px;
+}
+#javatab:hover{
+  cursor: url(java.cur),auto;
+  background-color:  #c1cdd8;
+}
+#htmltab:hover{
+  cursor: url(html.cur),auto;
+  background-color: #c1cdd8;
+}
+#jstab:hover{
+  cursor: url(javascript.cur),auto;
+  background-color:   #c1cdd8;
+}
