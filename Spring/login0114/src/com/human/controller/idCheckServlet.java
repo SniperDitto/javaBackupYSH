@@ -14,7 +14,7 @@ import com.human.dao.MemberDAO;
 /**
  * Servlet implementation class idCheckServlet
  */
-@WebServlet("/idCheck.do")
+@WebServlet("/idcheck.do")
 public class idCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

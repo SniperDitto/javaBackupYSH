@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.human.command.BCommand;
 import com.human.dao.BDao;
 import com.human.dto.BDto;
 
@@ -41,16 +42,51 @@ public class BFrontController extends HttpServlet {
 		String conPath=request.getContextPath();
 		String com=uri.substring(conPath.length());
 		
+		BCommand command=null;
+		
 		System.out.println(uri);
 		System.out.println(conPath);
 		System.out.println(com);//.do 페이지 정보
 		if(com.equals("/list.do")) {
 			viewPage="list.jsp";
-			BDao dao=new BDao();
-			ArrayList<BDto> dtos=dao.list();
-			request.setAttribute("list", dtos);
-		}else if(com.contentEquals("/write_view.do")) {
+			command=new BListCommand();
+			command.execute(request, response);
+			
+		}else if(com.equals("/write_view.do")) {
 			viewPage="write_view.jsp";
+		}else if(com.equals("/write.do")) {
+			viewPage="list.do";
+			command=new BWritecommand();
+			command.execute(request, response);
+			
+		}else if(com.equals("/content_view.do")) {
+			viewPage="content_view.jsp";
+			command=new BContentViewCommand();
+			command.execute(request, response);
+			
+			
+		}else if(com.equals("/delete.do")) {
+			viewPage="list.do";
+			command=new BDeleteCommand();
+			command.execute(request, response);
+			
+		}else if(com.equals("/modify.do")) {
+			viewPage="list.do";
+			command=new BModifyCommand();
+			command.execute(request, response);
+			
+			
+		}else if(com.equals("/reply_view.do")) {
+			viewPage="reply_view.jsp";
+			command=new BReplyViewCommand();
+			command.execute(request, response);
+			
+			
+		}else if(com.equals("/reply.do")) {
+			viewPage="list.do";
+			command=new BReplyCommand();
+			command.execute(request, response);
+			
 		}
 		
 		

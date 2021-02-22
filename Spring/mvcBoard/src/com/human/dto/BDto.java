@@ -3,16 +3,16 @@ package com.human.dto;
 import java.sql.Date;
 
 public class BDto {
-	private int bID;
+	private int bId;
 	private String bName,bTitle,bContent;
 	private Date bDate;
 	private int bHit,bGroup,bStep,bIndent;
 	
 	public BDto() {}
-	public BDto(int bID, String bName, String bTitle, String bContent, Date bDate, int bHit, int bGroup, int bStep,
+	public BDto(int bId, String bName, String bTitle, String bContent, Date bDate, int bHit, int bGroup, int bStep,
 			int bIndent) {
 		super();
-		this.bID = bID;
+		this.bId = bId;
 		this.bName = bName;
 		this.bTitle = bTitle;
 		this.bContent = bContent;
@@ -25,15 +25,15 @@ public class BDto {
 	
 	@Override
 	public String toString() {
-		return "BDto [bID=" + bID + ", bName=" + bName + ", bTitle=" + bTitle + ", bContent=" + bContent + ", bDate="
+		return "BDto [bId=" + bId + ", bName=" + bName + ", bTitle=" + bTitle + ", bContent=" + bContent + ", bDate="
 				+ bDate + ", bHit=" + bHit + ", bGroup=" + bGroup + ", bStep=" + bStep + ", bIndent=" + bIndent + "]";
 	}
 
-	public int getbID() {
-		return bID;
+	public int getbId() {
+		return bId;
 	}
-	public void setbID(int bID) {
-		this.bID = bID;
+	public void setbId(int bId) {
+		this.bId = bId;
 	}
 	public String getbName() {
 		return bName;

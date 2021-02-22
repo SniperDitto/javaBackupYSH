@@ -1,0 +1,189 @@
+-- 새 테이블
+CREATE TABLE "MY_SCHEMA"."EMP" (
+	"empNo"    NUMBER(4)    NOT NULL, -- 새 컬럼
+	"eName"    VARCHAR2(10) NOT NULL, -- 새 컬럼2
+	"job"      VARCHAR2(9)  NULL,     -- 새 컬럼3
+	"mgr"      NUMBER(4)    NULL,     -- 새 컬럼4
+	"hireDate" DATE         NULL,     -- 새 컬럼5
+	"sal"      NUMBER(7,2)  NULL,     -- 새 컬럼6
+	"comm"     NUMBER(7,2)  NULL,     -- 새 컬럼7
+	"deptNo"   NUMBER(2)    NULL      -- 새 컬럼8
+);
+
+-- 새 테이블 기본키
+CREATE UNIQUE INDEX "MY_SCHEMA"."PK_EMP"
+	ON "MY_SCHEMA"."EMP" ( -- 새 테이블
+		"empNo" ASC, -- 새 컬럼
+		"eName" ASC  -- 새 컬럼2
+	);
+
+-- 새 테이블
+ALTER TABLE "MY_SCHEMA"."EMP"
+	ADD
+		CONSTRAINT "PK_EMP" -- 새 테이블 기본키
+		PRIMARY KEY (
+			"empNo", -- 새 컬럼
+			"eName"  -- 새 컬럼2
+		);
+
+-- 새 테이블
+COMMENT ON TABLE "MY_SCHEMA"."EMP" IS '새 테이블';
+
+-- 새 컬럼
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."empNo" IS '새 컬럼';
+
+-- 새 컬럼2
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."eName" IS '새 컬럼2';
+
+-- 새 컬럼3
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."job" IS '새 컬럼3';
+
+-- 새 컬럼4
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."mgr" IS '새 컬럼4';
+
+-- 새 컬럼5
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."hireDate" IS '새 컬럼5';
+
+-- 새 컬럼6
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."sal" IS '새 컬럼6';
+
+-- 새 컬럼7
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."comm" IS '새 컬럼7';
+
+-- 새 컬럼8
+COMMENT ON COLUMN "MY_SCHEMA"."EMP"."deptNo" IS '새 컬럼8';
+
+-- 새 테이블 기본키
+COMMENT ON INDEX "MY_SCHEMA"."PK_EMP" IS '새 테이블 기본키';
+
+-- 새 테이블 기본키
+COMMENT ON CONSTRAINT "MY_SCHEMA"."EMP"."PK_EMP" IS '새 테이블 기본키';
+
+-- 새 테이블2
+CREATE TABLE "MY_SCHEMA"."DEPT" (
+	"deptNo" NUMBER(2)    NOT NULL, -- 새 컬럼
+	"dName"  VARCHAR2(10) NULL,     -- 새 컬럼2
+	"loc"    VARCHAR2(13) NULL      -- 새 컬럼3
+);
+
+-- 새 테이블2 기본키
+CREATE UNIQUE INDEX "MY_SCHEMA"."PK_DEPT"
+	ON "MY_SCHEMA"."DEPT" ( -- 새 테이블2
+		"deptNo" ASC -- 새 컬럼
+	);
+
+-- 새 테이블2
+ALTER TABLE "MY_SCHEMA"."DEPT"
+	ADD
+		CONSTRAINT "PK_DEPT" -- 새 테이블2 기본키
+		PRIMARY KEY (
+			"deptNo" -- 새 컬럼
+		);
+
+-- 새 테이블2
+COMMENT ON TABLE "MY_SCHEMA"."DEPT" IS '새 테이블2';
+
+-- 새 컬럼
+COMMENT ON COLUMN "MY_SCHEMA"."DEPT"."deptNo" IS '새 컬럼';
+
+-- 새 컬럼2
+COMMENT ON COLUMN "MY_SCHEMA"."DEPT"."dName" IS '새 컬럼2';
+
+-- 새 컬럼3
+COMMENT ON COLUMN "MY_SCHEMA"."DEPT"."loc" IS '새 컬럼3';
+
+-- 새 테이블2 기본키
+COMMENT ON INDEX "MY_SCHEMA"."PK_DEPT" IS '새 테이블2 기본키';
+
+-- 새 테이블2 기본키
+COMMENT ON CONSTRAINT "MY_SCHEMA"."DEPT"."PK_DEPT" IS '새 테이블2 기본키';
+
+-- 새 테이블3
+CREATE TABLE "MY_SCHEMA"."BONUS" (
+	"eName" VARCHAR2(10) NOT NULL, -- 새 컬럼
+	"job"   VARCHAR2(9)  NULL,     -- 새 컬럼2
+	"sal"   NUMBER(7,2)  NULL,     -- 새 컬럼3
+	"comm"  NUMBER(7,2)  NULL      -- 새 컬럼4
+);
+
+-- 새 테이블3 기본키
+CREATE UNIQUE INDEX "MY_SCHEMA"."PK_BONUS"
+	ON "MY_SCHEMA"."BONUS" ( -- 새 테이블3
+		"eName" ASC -- 새 컬럼
+	);
+
+-- 새 테이블3
+ALTER TABLE "MY_SCHEMA"."BONUS"
+	ADD
+		CONSTRAINT "PK_BONUS" -- 새 테이블3 기본키
+		PRIMARY KEY (
+			"eName" -- 새 컬럼
+		);
+
+-- 새 테이블3
+COMMENT ON TABLE "MY_SCHEMA"."BONUS" IS '새 테이블3';
+
+-- 새 컬럼
+COMMENT ON COLUMN "MY_SCHEMA"."BONUS"."eName" IS '새 컬럼';
+
+-- 새 컬럼2
+COMMENT ON COLUMN "MY_SCHEMA"."BONUS"."job" IS '새 컬럼2';
+
+-- 새 컬럼3
+COMMENT ON COLUMN "MY_SCHEMA"."BONUS"."sal" IS '새 컬럼3';
+
+-- 새 컬럼4
+COMMENT ON COLUMN "MY_SCHEMA"."BONUS"."comm" IS '새 컬럼4';
+
+-- 새 테이블3 기본키
+COMMENT ON INDEX "MY_SCHEMA"."PK_BONUS" IS '새 테이블3 기본키';
+
+-- 새 테이블3 기본키
+COMMENT ON CONSTRAINT "MY_SCHEMA"."BONUS"."PK_BONUS" IS '새 테이블3 기본키';
+
+-- 새 테이블4
+CREATE TABLE "MY_SCHEMA"."SALGRADE" (
+	"grade" NUMBER(3)   NULL, -- 새 컬럼
+	"loSal" NUMBER(7,2) NULL, -- 새 컬럼2
+	"hiSal" NUMBER(7,2) NULL  -- 새 컬럼3
+);
+
+-- 새 테이블4
+COMMENT ON TABLE "MY_SCHEMA"."SALGRADE" IS '새 테이블4';
+
+-- 새 컬럼
+COMMENT ON COLUMN "MY_SCHEMA"."SALGRADE"."grade" IS '새 컬럼';
+
+-- 새 컬럼2
+COMMENT ON COLUMN "MY_SCHEMA"."SALGRADE"."loSal" IS '새 컬럼2';
+
+-- 새 컬럼3
+COMMENT ON COLUMN "MY_SCHEMA"."SALGRADE"."hiSal" IS '새 컬럼3';
+
+-- 새 테이블
+ALTER TABLE "MY_SCHEMA"."EMP"
+	ADD
+		CONSTRAINT "FK_DEPT_TO_EMP" -- 새 테이블2 -> 새 테이블
+		FOREIGN KEY (
+			"deptNo" -- 새 컬럼8
+		)
+		REFERENCES "MY_SCHEMA"."DEPT" ( -- 새 테이블2
+			"deptNo" -- 새 컬럼
+		);
+
+-- 새 테이블2 -> 새 테이블
+COMMENT ON CONSTRAINT "MY_SCHEMA"."EMP"."FK_DEPT_TO_EMP" IS '새 테이블2 -> 새 테이블';
+
+-- 새 테이블
+ALTER TABLE "MY_SCHEMA"."EMP"
+	ADD
+		CONSTRAINT "FK_BONUS_TO_EMP" -- 새 테이블3 -> 새 테이블
+		FOREIGN KEY (
+			"eName" -- 새 컬럼2
+		)
+		REFERENCES "MY_SCHEMA"."BONUS" ( -- 새 테이블3
+			"eName" -- 새 컬럼
+		);
+
+-- 새 테이블3 -> 새 테이블
+COMMENT ON CONSTRAINT "MY_SCHEMA"."EMP"."FK_BONUS_TO_EMP" IS '새 테이블3 -> 새 테이블';
